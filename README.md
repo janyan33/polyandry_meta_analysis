@@ -9,3 +9,5 @@ This folder contains the cleaning_data.R script which separates the full dataset
 
 All of the code used to produce the fecundity analyses and figures can be found in the fecund_analysis.R script while all of the code used to produce the longevity analyses and figures can be found in the longevity_analysis.R script. 
 
+## Other files
+I've also included the PRISMA flowchart in the main folder and an Excel file with all studies that were read in detail during the full text screen. The first tab includes all 422 which were screened for eligibility with red highlighted rows denoted excluded studies and green highlighted rows denoting included studies. The second tab in this file is a list of all the excluded studies with rationales for each exclusion and the third tab is a full list of only the included studies. 
