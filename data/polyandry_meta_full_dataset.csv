@@ -63,18 +63,18 @@ Credland and Wright (1989),Callosobruchus maculatus,Coleoptera,y,n,n,n,once_few,
 Credland and Wright (1989),Callosobruchus maculatus,Coleoptera,y,n,n,n,once_many,2,26,10,10,NA,NA,NA,NA,93,12.6,88,9.8,NA,NA,NA,NA
 Credland and Wright (1989),Callosobruchus maculatus,Coleoptera,y,n,n,n,once_many,2,26,10,10,NA,NA,NA,NA,93,12.6,93.9,16.4,NA,NA,NA,NA
 Croshaw and Gomez (2018),Drosophila arizonae,Diptera,n,n,y,n,once_few,1,27,24,28,40.1,14.65,43.44,10.58,NA,NA,NA,NA,NA,NA,NA,NA
-de Morais et al. (2012),Grapholita molesta ,Lepidoptera,n,y,y,y,once_few,1,28,23,11,12.3,5.56,14,7.5,174,44.41,216.7,64.87,172.2,45.32,214.27,62.32
+de Morais et al. (2012),Grapholita molesta,Lepidoptera,n,y,y,y,once_few,1,28,23,11,12.3,5.56,14,7.5,174,44.41,216.7,64.87,172.2,45.32,214.27,62.32
 den Hollander and Gwynne (2009),Callosobruchus maculatus,Coleoptera,y,n,y,n,once_four,1,29,26,23,8.73,1.71,7.81,1.47,NA,NA,NA,NA,68.88,19.21,51.28,15.07
 Di et al. (2023),Spodoptera litura,Lepidoptera,n,y,y,n,once_twice,1,30,30,20,7.91,2.54,8.73,2.66,1318.47,1363.74,1390.73,841.12,NA,NA,NA,NA
-Dickinson (1988),Labidomera clivicollis ,Coleoptera,y,n,n,n,once_six,1,31,13,18,NA,NA,NA,NA,338.7,73.6,305.8,72.1,NA,NA,NA,NA
+Dickinson (1988),Labidomera clivicollis,Coleoptera,y,n,n,n,once_six,1,31,13,18,NA,NA,NA,NA,338.7,73.6,305.8,72.1,NA,NA,NA,NA
 Domek and Johnson (1991),Cotinis nitida,Coleoptera,n,n,y,n,once_twice,1,32,25,25,23.1,6.5,23,6.5,45.1,26,56.5,26.5,NA,NA,NA,NA
 Domek and Johnson (1991),Cotinis nitida,Coleoptera,n,n,y,n,once_twice,2,32,25,25,14.9,4.5,13.9,5,26.7,26,27.1,26.5,NA,NA,NA,NA
 Drnevich et al. (2001),Tenebrio molitor,Coleoptera,n,y,n,n,once_twice,1,33,7,8,NA,NA,NA,NA,15.06,15.03,10.12,9.79,NA,NA,NA,NA
 Dunn et al. (2005),Coelopa frigida,Diptera,n,n,y,n,once_four,1,34,60,60,6.13,0.93,6.47,1.24,63.93,45.47,109.77,56.31,NA,NA,NA,NA
-"Duran, Medina and Quintero (2014)",Sangalopsis veliterna,Lepidoptera,y,y,y,y,once_twice,1,35,15,15,NA,NA,NA,NA,39.22,66.69,111.37,79.71,NA,NA,NA,NA
-"Duran, Medina and Quintero (2014)",Sangalopsis veliterna,Lepidoptera,y,y,y,y,once_twice,1,35,15,15,12.55,5.22,14.45,6.62,NA,NA,NA,NA,NA,NA,NA,NA
-"Duran, Medina and Quintero (2014)",Sangalopsis veliterna,Lepidoptera,y,y,y,y,once_four,1,35,15,15,12.55,5.22,12.33,9.49,NA,NA,NA,NA,NA,NA,NA,NA
-"Duran, Medina and Quintero (2014)",Sangalopsis veliterna,Lepidoptera,y,y,y,y,once_eight,1,35,15,15,12.55,5.22,13.87,7.51,NA,NA,NA,NA,NA,NA,NA,NA
+"Duran, Medina and Quintero (2014)",Sangalopsis microleuca,Lepidoptera,y,y,y,y,once_twice,1,35,15,15,NA,NA,NA,NA,39.22,66.69,111.37,79.71,NA,NA,NA,NA
+"Duran, Medina and Quintero (2014)",Sangalopsis microleuca,Lepidoptera,y,y,y,y,once_twice,1,35,15,15,12.55,5.22,14.45,6.62,NA,NA,NA,NA,NA,NA,NA,NA
+"Duran, Medina and Quintero (2014)",Sangalopsis microleuca,Lepidoptera,y,y,y,y,once_four,1,35,15,15,12.55,5.22,12.33,9.49,NA,NA,NA,NA,NA,NA,NA,NA
+"Duran, Medina and Quintero (2014)",Sangalopsis microleuca,Lepidoptera,y,y,y,y,once_eight,1,35,15,15,12.55,5.22,13.87,7.51,NA,NA,NA,NA,NA,NA,NA,NA
 Etges & Heed (1992),Drosophila mojavensis,Diptera,y,n,y,n,once_twice,1,36,67,67,21.157,NA,19.493,NA,68.761,NA,70.09,NA,NA,NA,NA,NA
 Etges & Heed (1992),Drosophila mojavensis,Diptera,y,n,y,n,once_four,1,36,67,64,21.157,NA,17.141,NA,68.761,NA,48.765,NA,NA,NA,NA,NA
 Fadamiro and Baker (1999),Ostrinia nubilalis,Lepidoptera,y,y,y,y,once_twice,1,37,48,15,13,3.6,11.8,2.6,540,292,630,181,NA,NA,NA,NA
@@ -85,7 +85,7 @@ Fan et al. (2015),Galerucella birmanica,Coleoptera,n,n,y,n,once_five,1,38,10,10,
 Fan et al. (2015),Galerucella birmanica,Coleoptera,y,n,y,n,once_twice,2,38,10,9,34.29,6.53,29.84,8.1,519.68,145.15,385.25,108.21,430,158.12,310,102.77
 Fan et al. (2015),Galerucella birmanica,Coleoptera,y,n,y,n,once_four,2,38,10,7,34.29,6.53,21.9,4.63,519.68,145.15,231.15,104.08,430,158.12,215,110.68
 Fedorka and Mousseau (2002),Allonemobius socius,Orthoptera,n,y,y,n,once_four,1,39,73,24,71.51,34,49.05,25.2,62.5,56.4,62.5,32.3,NA,NA,NA,NA
-Fedorka and Zuk (2005),Allonemobious socius,Orthoptera,n,y,y,n,once_four,1,40,55,47,31.1,30.7,20,13.69,39.96,67.71,74.1,68.93,NA,NA,NA,NA
+Fedorka and Zuk (2005),Allonemobius socius,Orthoptera,n,y,y,n,once_four,1,40,55,47,31.1,30.7,20,13.69,39.96,67.71,74.1,68.93,NA,NA,NA,NA
 Felix et al. (2022),Cryptolaemus montrouzieri,Coleoptera,n,y,n,n,once_twice,1,41,11,11,NA,NA,NA,NA,12.9,16.82,33.36,17.64,NA,NA,NA,NA
 Felix et al. (2022),Cryptolaemus montrouzieri,Coleoptera,n,y,n,n,once_four,1,41,11,11,NA,NA,NA,NA,12.9,16.82,30,16.91,NA,NA,NA,NA
 "Flay, He and Wang (2010)",Sitophilus oryzae,Coleoptera,n,n,n,n,once_twice,1,42,30,30,NA,NA,NA,NA,49.28,17.64,50.36,13.69,NA,NA,NA,NA
@@ -142,9 +142,9 @@ Jagadeeshan et al. (2015),Drosophila simulans,Diptera,y,n,y,n,once_nine,2,63,20,
 Jagadeeshan et al. (2015),Drosophila sechellia,Diptera,y,n,y,n,once_thrice,3,63,20,20,55,NA,47.18,NA,NA,NA,NA,NA,142.05,101.21,125.64,120.62
 Jagadeeshan et al. (2015),Drosophila sechellia,Diptera,y,n,y,n,once_six,3,63,20,20,55,NA,25.9,NA,NA,NA,NA,NA,142.05,101.21,72.56,51.14
 Jagadeeshan et al. (2015),Drosophila sechellia,Diptera,y,n,y,n,once_nine,3,63,20,20,55,NA,20.64,NA,NA,NA,NA,NA,142.05,101.21,69.23,40.77
-Jagadeeshan et al. (2015),Drosophila mauritania,Diptera,y,n,y,n,once_thrice,4,63,20,20,56.2,NA,27.5,NA,NA,NA,NA,NA,141.78,84.36,145.9,104.34
-Jagadeeshan et al. (2015),Drosophila mauritania,Diptera,y,n,y,n,once_six,4,63,20,20,56.2,NA,22,NA,NA,NA,NA,NA,141.78,84.36,112.5,94.35
-Jagadeeshan et al. (2015),Drosophila mauritania,Diptera,y,n,y,n,once_nine,4,63,20,20,56.2,NA,21.14,NA,NA,NA,NA,NA,141.78,84.36,85.35,48.76
+Jagadeeshan et al. (2015),Drosophila mauritiana,Diptera,y,n,y,n,once_thrice,4,63,20,20,56.2,NA,27.5,NA,NA,NA,NA,NA,141.78,84.36,145.9,104.34
+Jagadeeshan et al. (2015),Drosophila mauritiana,Diptera,y,n,y,n,once_six,4,63,20,20,56.2,NA,22,NA,NA,NA,NA,NA,141.78,84.36,112.5,94.35
+Jagadeeshan et al. (2015),Drosophila mauritiana,Diptera,y,n,y,n,once_nine,4,63,20,20,56.2,NA,21.14,NA,NA,NA,NA,NA,141.78,84.36,85.35,48.76
 Jagadeeshan et al. (2015),Drosophila melanogaster,Diptera,n,n,y,n,once_few,5,63,8,8,52.04,NA,40.4,NA,NA,NA,NA,NA,314.48,75.79,475.71,42.08
 Jagadeeshan et al. (2015),Drosophila melanogaster,Diptera,n,n,y,n,once_many,5,63,8,8,52.04,NA,34.58,NA,NA,NA,NA,NA,314.48,75.79,520.68,165.34
 "Jayanthi, Sangeetha and Verghese (2013)",Cryptolaemus montrouzieri,Coleoptera,y,n,n,n,once_twice,1,64,3,3,NA,NA,NA,NA,55.82,NA,73.8,NA,NA,NA,NA,NA
@@ -167,7 +167,7 @@ Knight (2007),Cydia pomonella,Lepidoptera,y,y,n,y,once_four,1,73,89,22,NA,NA,NA,
 Koliada et al. (2020),Drosophila melanogaster,Diptera,y,n,y,n,once_five,1,74,22,22,51,14.07,45.48,12.95,13.3,0.563,23.58,0.858,NA,NA,NA,NA
 Landolt (1997),Trichoplusia ni,Lepidoptera,n,y,y,y,once_twice,1,75,29,7,NA,NA,NA,NA,1350,441.58,1665,415.38,NA,NA,NA,NA
 Landolt (1997),Trichoplusia ni,Lepidoptera,n,y,y,y,once_twice,2,75,27,5,NA,NA,NA,NA,999,290.98,1181,281.74,NA,NA,NA,NA
-Lawrence (1990),Tetraopes tetraophthalm,Coleoptera,n,n,y,y,once_many,1,76,21,28,NA,NA,NA,NA,49.3,32.5,91.9,63,35.4,20.16,73.3,48.7
+Lawrence (1990),Tetraopes tetrophthalmus,Coleoptera,n,n,y,y,once_many,1,76,21,28,NA,NA,NA,NA,49.3,32.5,91.9,63,35.4,20.16,73.3,48.7
 Lewis and Austad (1994),Tribolium castaneum,Coleoptera,y,n,n,n,once_twice,1,77,10,9,NA,NA,NA,NA,35.5,12.3,42.9,12.3,NA,NA,NA,NA
 Lewis and Austad (1994),Tribolium castaneum,Coleoptera,y,n,n,n,once_four,1,77,10,7,NA,NA,NA,NA,35.5,12.3,50.4,12.4,NA,NA,NA,NA
 Li et al. (2014)a,Spodoptera litura,Lepidoptera,y,y,y,n,once_many,1,78,13,12,NA,NA,NA,NA,253.53,94.1,221.14,48.76,NA,NA,NA,NA
@@ -177,9 +177,9 @@ Liu et al. (2013),Colaphellus bowringi,Coleoptera,n,n,y,y,three_five,1,81,21,14,
 Londono-Nieto et al. (2023),Drosophila melanogaster,Diptera,y,n,y,n,once_three,1,82,74,73,43.44,17.6,28.56,9.55,120.01,78.78,93.62,62.19,NA,NA,NA,NA
 Londono-Nieto et al. (2023),Drosophila melanogaster,Diptera,y,n,y,n,once_three,2,82,74,71,31.89,12.13,22.11,8.09,125.54,76.51,80.99,51.27,NA,NA,NA,NA
 Londono-Nieto et al. (2023),Drosophila melanogaster,Diptera,y,n,y,n,once_three,3,82,71,66,29.72,6.74,23.72,8.93,125.25,49.56,112.19,68.17,NA,NA,NA,NA
-Lopez and Hoddle (2014),Agrilus auroguttatus,Coleoptera,y,n,y,n,once_twice,1,83,8,6,16.5,7.35,13.3,5.63,NA,NA,NA,NA,NA,NA,NA,NA
-Lopez and Hoddle (2014),Agrilus auroguttatus,Coleoptera,y,n,y,n,once_twice,2,83,8,8,72.1,17.82,75.6,22.06,194.66,145.48,123,80.85,171.59,137.59,95.47,71.57
-Lopez and Hoddle (2014),Agrilus auroguttatus,Coleoptera,y,n,y,n,once_twice,3,83,8,7,122.1,55.15,109.1,64.29,568.89,274.76,428.64,279.7,393.31,214.61,307.46,247.09
+Lopez and Hoddle (2014),Agrilus coxalis auroguttatus,Coleoptera,y,n,y,n,once_twice,1,83,8,6,16.5,7.35,13.3,5.63,NA,NA,NA,NA,NA,NA,NA,NA
+Lopez and Hoddle (2014),Agrilus coxalis auroguttatus,Coleoptera,y,n,y,n,once_twice,2,83,8,8,72.1,17.82,75.6,22.06,194.66,145.48,123,80.85,171.59,137.59,95.47,71.57
+Lopez and Hoddle (2014),Agrilus coxalis auroguttatus,Coleoptera,y,n,y,n,once_twice,3,83,8,7,122.1,55.15,109.1,64.29,568.89,274.76,428.64,279.7,393.31,214.61,307.46,247.09
 "Lubanga, Peters and Steinbauer (2018)",Aacanthocnema dobsoni,Hemiptera,y,n,y,n,once_thrice,1,84,37,39,29.31,13.27,25.94,8.81,16.59,13.87,14.19,10.58,NA,NA,NA,NA
 Lugo-Olguin and Del Castillo (2007),Sphenarium purpurascens,Orthoptera,n,n,n,n,once_twice,1,85,26,24,NA,NA,NA,NA,24.04,8.67,15.29,8.72,NA,NA,NA,NA
 Macke et al. (2012),Tetranychus urticae,Arachnida,n,n,y,n,once_many,1,86,44,46,45.17,10.75,44.18,10.58,77.97,10.35,73.91,12.21,NA,NA,NA,NA
@@ -193,10 +193,10 @@ Markow (1985),Drosophila hydei,Diptera,n,n,n,n,once_thrice,2,89,15,15,NA,NA,NA,N
 Markow (1985),Drosophila hydei,Diptera,n,n,n,n,once_twice,1,89,12,12,NA,NA,NA,NA,55.29,5.91,57.88,7.14,NA,NA,NA,NA
 Markow (1985),Drosophila hydei,Diptera,n,n,n,n,once_twice,2,89,15,14,NA,NA,NA,NA,56.01,7.23,79.99,7.58,NA,NA,NA,NA
 Maroja et al. (2009),Gryllus firmus,Orthoptera,n,y,y,n,once_twice,1,90,15,16,NA,NA,NA,NA,597.46,414.19,726.77,422.41,NA,NA,NA,NA
-Martin and Hosken (2004),Saltella sphondylli,Diptera,n,n,y,n,once_twice,1,91,20,20,22.3,6.26,21.4,7.16,NA,NA,NA,NA,NA,NA,NA,NA
-Martin and Hosken (2004),Saltella sphondylli,Diptera,n,n,y,n,once_four,1,91,20,20,22.3,6.26,20.7,5.99,NA,NA,NA,NA,NA,NA,NA,NA
-Martin and Hosken (2004),Saltella sphondylli,Diptera,n,n,y,n,once_six,1,91,20,20,22.3,6.26,19.45,7.07,NA,NA,NA,NA,NA,NA,NA,NA
-Martin and Hosken (2004),Saltella sphondylli,Diptera,n,n,y,n,once_twice,2,91,45,45,19.56,6.84,18.2,6.57,36.16,40.12,29.02,29.38,NA,NA,NA,NA
+Martin and Hosken (2004),Saltella sphondylii,Diptera,n,n,y,n,once_twice,1,91,20,20,22.3,6.26,21.4,7.16,NA,NA,NA,NA,NA,NA,NA,NA
+Martin and Hosken (2004),Saltella sphondylii,Diptera,n,n,y,n,once_four,1,91,20,20,22.3,6.26,20.7,5.99,NA,NA,NA,NA,NA,NA,NA,NA
+Martin and Hosken (2004),Saltella sphondylii,Diptera,n,n,y,n,once_six,1,91,20,20,22.3,6.26,19.45,7.07,NA,NA,NA,NA,NA,NA,NA,NA
+Martin and Hosken (2004),Saltella sphondylii,Diptera,n,n,y,n,once_twice,2,91,45,45,19.56,6.84,18.2,6.57,36.16,40.12,29.02,29.38,NA,NA,NA,NA
 Mbata et al. (1997),Callosobruchus subinnotatus,Coleoptera,n,n,y,n,once_twice,1,92,20,20,NA,NA,NA,NA,97.8,20.48,110.4,13.84,NA,NA,NA,NA
 Mbata et al. (1997),Callosobruchus subinnotatus,Coleoptera,n,n,y,n,once_thrice,1,92,20,20,NA,NA,NA,NA,97.8,20.48,110.4,17.3,NA,NA,NA,NA
 Mbata et al. (1997),Callosobruchus subinnotatus,Coleoptera,n,n,y,n,once_four,1,92,20,20,NA,NA,NA,NA,97.8,20.48,96.7,22.63,NA,NA,NA,NA
@@ -248,25 +248,25 @@ Perry and Rowe (2008),Adalia bipunctata,Coleoptera,n,y,y,y,once_thrice,1,114,10,
 Priest et al. (2008),Drosophila melanogaster,Diptera,y,n,y,n,few_many,1,115,195,130,35.77,NA,31.93,NA,NA,NA,NA,NA,546.4,317,486.9,309
 Priest et al. (2008),Drosophila melanogaster,Diptera,y,n,y,n,few_many,1,115,195,179,35.77,NA,24.28,NA,NA,NA,NA,NA,546.4,317,378.2,270.3
 Pyle and Gromko (1978),Drosophila melanogaster,Diptera,n,n,n,n,once_twice,1,116,107,70,NA,NA,NA,NA,NA,NA,NA,NA,450,NA,1053,NA
-Radwan and Rysinska (1999),Caloglyphus berlesei,Arachnida,y,n,y,n,once_four,1,117,12,12,17.98,NA,17.98,NA,154.53,56.95,145.83,57.82,NA,NA,NA,NA
-Radwan and Rysinska (1999),Caloglyphus berlesei,Arachnida,y,n,y,n,once_four,1,117,12,12,15,NA,11,NA,216.04,58.7,86.45,64.85,NA,NA,NA,NA
-Radwan and Rysinska (1999),Caloglyphus berlesei,Arachnida,y,n,y,n,once_four,1,117,12,12,18,NA,16,NA,238.16,138.41,119.95,84.97,NA,NA,NA,NA
-Radwan and Rysinska (1999),Caloglyphus berlesei,Arachnida,y,n,y,n,once_four,1,117,12,12,14,NA,14,NA,170,90.23,135.03,86.72,NA,NA,NA,NA
-Radwan and Rysinska (1999),Caloglyphus berlesei,Arachnida,y,n,y,n,once_four,1,117,12,12,15,NA,11,NA,102.72,75.34,75.62,49.93,NA,NA,NA,NA
-Radwan and Rysinska (1999),Caloglyphus berlesei,Arachnida,y,n,y,n,once_four,2,117,12,12,16.93,NA,12.02,NA,23.34,15.56,46.79,15.56,NA,NA,NA,NA
-Radwan and Rysinska (1999),Caloglyphus berlesei,Arachnida,y,n,y,n,once_four,2,117,12,12,15,NA,13,NA,44.34,27.69,34.93,13.83,NA,NA,NA,NA
-Radwan and Rysinska (1999),Caloglyphus berlesei,Arachnida,y,n,y,n,once_four,2,117,12,12,16.47,NA,11.52,NA,55.87,45.85,52.5,22.48,NA,NA,NA,NA
-Radwan and Rysinska (1999),Caloglyphus berlesei,Arachnida,y,n,y,n,once_four,2,117,12,12,16.92,NA,12.45,NA,82.09,40.65,57.94,25.94,NA,NA,NA,NA
-Radwan and Rysinska (1999),Caloglyphus berlesei,Arachnida,y,n,y,n,once_four,2,117,12,12,16.96,NA,14,NA,45.12,19.9,53,35.46,NA,NA,NA,NA
-Ravi Kumar et al. (1995),Antherued mylitta,Lepidoptera,n,n,n,n,once_twice,1,118,15,15,NA,NA,NA,NA,207.26,14.41,271.8,15.18,NA,NA,NA,NA
-Ravi Kumar et al. (1995),Antherued mylitta,Lepidoptera,n,n,n,n,once_twice,1,118,15,15,NA,NA,NA,NA,228.67,17.66,292.61,14.02,NA,NA,NA,NA
-Ravi Kumar et al. (1995),Antherued mylitta,Lepidoptera,n,n,n,n,once_twice,1,118,15,15,NA,NA,NA,NA,215.23,12.2,282.4,15.96,NA,NA,NA,NA
+Radwan and Rysinska (1999),Sancassania berlesei,Arachnida,y,n,y,n,once_four,1,117,12,12,17.98,NA,17.98,NA,154.53,56.95,145.83,57.82,NA,NA,NA,NA
+Radwan and Rysinska (1999),Sancassania berlesei,Arachnida,y,n,y,n,once_four,1,117,12,12,15,NA,11,NA,216.04,58.7,86.45,64.85,NA,NA,NA,NA
+Radwan and Rysinska (1999),Sancassania berlesei,Arachnida,y,n,y,n,once_four,1,117,12,12,18,NA,16,NA,238.16,138.41,119.95,84.97,NA,NA,NA,NA
+Radwan and Rysinska (1999),Sancassania berlesei,Arachnida,y,n,y,n,once_four,1,117,12,12,14,NA,14,NA,170,90.23,135.03,86.72,NA,NA,NA,NA
+Radwan and Rysinska (1999),Sancassania berlesei,Arachnida,y,n,y,n,once_four,1,117,12,12,15,NA,11,NA,102.72,75.34,75.62,49.93,NA,NA,NA,NA
+Radwan and Rysinska (1999),Sancassania berlesei,Arachnida,y,n,y,n,once_four,2,117,12,12,16.93,NA,12.02,NA,23.34,15.56,46.79,15.56,NA,NA,NA,NA
+Radwan and Rysinska (1999),Sancassania berlesei,Arachnida,y,n,y,n,once_four,2,117,12,12,15,NA,13,NA,44.34,27.69,34.93,13.83,NA,NA,NA,NA
+Radwan and Rysinska (1999),Sancassania berlesei,Arachnida,y,n,y,n,once_four,2,117,12,12,16.47,NA,11.52,NA,55.87,45.85,52.5,22.48,NA,NA,NA,NA
+Radwan and Rysinska (1999),Sancassania berlesei,Arachnida,y,n,y,n,once_four,2,117,12,12,16.92,NA,12.45,NA,82.09,40.65,57.94,25.94,NA,NA,NA,NA
+Radwan and Rysinska (1999),Sancassania berlesei,Arachnida,y,n,y,n,once_four,2,117,12,12,16.96,NA,14,NA,45.12,19.9,53,35.46,NA,NA,NA,NA
+Ravi Kumar et al. (1995),Antheraea mylitta,Lepidoptera,n,n,n,n,once_twice,1,118,15,15,NA,NA,NA,NA,207.26,14.41,271.8,15.18,NA,NA,NA,NA
+Ravi Kumar et al. (1995),Antheraea mylitta,Lepidoptera,n,n,n,n,once_twice,1,118,15,15,NA,NA,NA,NA,228.67,17.66,292.61,14.02,NA,NA,NA,NA
+Ravi Kumar et al. (1995),Antheraea mylitta,Lepidoptera,n,n,n,n,once_twice,1,118,15,15,NA,NA,NA,NA,215.23,12.2,282.4,15.96,NA,NA,NA,NA
 Ronn et al. (2006),Callosobruchus maculatus,Coleoptera,y,n,y,n,once_many,1,119,15,15,9.9,2.3,7.9,1.3,70.3,23.1,73.7,16.7,NA,NA,NA,NA
 Ronn et al. (2006),Callosobruchus maculatus,Coleoptera,y,n,y,n,once_many,2,119,15,15,7.9,1.2,6.6,0.7,90.3,13.8,77,11.5,NA,NA,NA,NA
-Ronn et al. (2006),Callosobruchus chinesis,Coleoptera,y,n,y,n,once_many,3,119,15,15,9.1,1.8,6.4,1.5,47.3,20.6,43.7,13,NA,NA,NA,NA
+Ronn et al. (2006),Callosobruchus chinensis,Coleoptera,y,n,y,n,once_many,3,119,15,15,9.1,1.8,6.4,1.5,47.3,20.6,43.7,13,NA,NA,NA,NA
 Ronn et al. (2006),Callosobruchus rhodesianus,Coleoptera,y,n,y,n,once_many,4,119,15,15,7,1.4,5.9,1.1,67.3,22.3,67.5,28.5,NA,NA,NA,NA
 Ronn et al. (2006),Callosobruchus analis,Coleoptera,y,n,y,n,once_many,5,119,15,15,8.3,1.9,6.5,1.1,75.1,21.6,62.5,7.6,NA,NA,NA,NA
-Ronn et al. (2006),Callosobruchus subinnatatus,Coleoptera,y,n,y,n,once_many,6,119,15,15,10.3,3.7,8.5,1.5,33.3,15.6,34.7,20,NA,NA,NA,NA
+Ronn et al. (2006),Callosobruchus subinnotatus,Coleoptera,y,n,y,n,once_many,6,119,15,15,10.3,3.7,8.5,1.5,33.3,15.6,34.7,20,NA,NA,NA,NA
 Ronn et al. (2006),Callosobruchus phaseoli,Coleoptera,y,n,y,n,once_many,7,119,15,15,9.5,1.6,9.1,1.4,45.9,24.1,42.7,8.4,NA,NA,NA,NA
 Rooney & Lewis (2002),Photinus ignitus,Coleoptera,n,y,y,n,once_thrice,1,120,20,20,4.9,1.3,5.8,1.3,18.5,14.3,32,14.3,NA,NA,NA,NA
 Rooney & Lewis (2002),Ellychnia corrusca,Coleoptera,n,y,y,n,once_thrice,1,120,35,35,7.8,1.8,8.2,1.8,18.7,11.8,26.3,11.8,NA,NA,NA,NA
@@ -281,8 +281,8 @@ Sahu (2012),Anegleis cardoni,Coleoptera,n,n,y,y,once_twenty,1,124,10,10,101,2.84
 Sahu (2012),Anegleis cardoni,Coleoptera,n,n,y,y,once_twentyfive,1,124,10,10,101,2.84,53.3,5.7,109.2,18.3,286.2,51.2,NA,NA,NA,NA
 Sakaluk & Cade (1980),Acheta domesticus,Orthoptera,y,y,n,y,once_twice,1,125,56,27,NA,NA,NA,NA,NA,NA,NA,NA,61.89,62.16,87.33,62.26
 Sakaluk & Cade (1980),Gryllus integer,Orthoptera,y,y,n,y,once_twice,2,125,8,8,NA,NA,NA,NA,NA,NA,NA,NA,121,136.8,172.5,107.5
-Sakaluk et al. (2007),Gryllus sigillatus,Orthoptera,y,y,n,n,once_five,1,126,24,24,NA,NA,NA,NA,288.1,159.22,318,157.75,NA,NA,NA,NA
-Sakurai (1996),Reptortus clavatus,Hemiptera,n,n,y,n,once_twice,1,127,25,13,77.4,20.3,79.2,25,215.7,84.3,323.4,105.6,104.4,62.9,172.2,62.6
+Sakaluk et al. (2002),Gryllodes sigillatus,Orthoptera,y,y,n,n,once_five,1,126,24,24,NA,NA,NA,NA,288.1,159.22,318,157.75,NA,NA,NA,NA
+Sakurai (1996),Riptortus clavatus,Hemiptera,n,n,y,n,once_twice,1,127,25,13,77.4,20.3,79.2,25,215.7,84.3,323.4,105.6,104.4,62.9,172.2,62.6
 Sakurai and Kasuya (2008),Callosobruchus chinensis,Coleoptera,n,n,y,y,once_twice,1,128,20,26,12.25,1.97,10.96,1.23,38.42,6.42,52.11,5.14,24.76,6.34,44.93,4.81
 Sakurai and Kasuya (2008),Callosobruchus chinensis,Coleoptera,n,n,y,y,once_twice,2,128,27,24,11.37,2.1,11.96,1.2,35.27,5.25,37.16,3.97,26.17,5.87,28.61,4.93
 Santolamazza-Carbone and Cordero Rivera (2003),Gonipterus scutellatus,Coleoptera,y,n,n,y,once_twice,1,129,20,20,NA,NA,NA,NA,141.3,42.04,187.6,122.54,NA,NA,NA,NA
@@ -297,7 +297,7 @@ Shuker et al. (2006),Lygaeus equestris,Hemiptera,y,n,y,n,once_three,2,135,21,21,
 Simmons (1988),Gryllus bimaculatus,Orthoptera,n,y,y,n,once_thrice,1,136,10,10,44.5,10.8,39.3,14.8,2256,855,2663,1102,NA,NA,NA,NA
 Sousa-Souto et al. (2006),Podisus nigrispinus,Hemiptera,n,n,y,n,once_twice,1,137,15,10,75.46,NA,69.48,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Sousa-Souto et al. (2006),Podisus nigrispinus,Hemiptera,n,n,y,n,once_thrice,1,137,15,10,75.46,NA,59.38,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Svard and McNeil (1994),Pseudaletia unipuncta,Lepidoptera,n,y,y,y,once_twice,1,138,23,24,15.8,3.4,18.8,2.9,1623.5,472.2,2042.5,513.6,NA,NA,NA,NA
+Svard and McNeil (1994),Mythimna unipuncta,Lepidoptera,n,y,y,y,once_twice,1,138,23,24,15.8,3.4,18.8,2.9,1623.5,472.2,2042.5,513.6,NA,NA,NA,NA
 Svensson et al. (1998),Agrotis segetum,Lepidoptera,n,y,y,y,once_twice,1,139,74,20,NA,NA,NA,NA,590,258.1,670,268.3,NA,NA,NA,NA
 Taylor et al. (2008),Drosophila simulans,Diptera,y,n,y,n,once_twice,1,140,21,26,24.6,NA,23.08,NA,NA,NA,NA,NA,215.8,121.4,308.6,175.9
 Taylor et al. (2008),Drosophila simulans,Diptera,y,n,y,n,once_thrice,2,140,21,15,24.6,NA,24.15,NA,NA,NA,NA,NA,215.8,121.4,388.8,138.3
@@ -306,7 +306,7 @@ Toft and Albo (2015),Pisaura mirabilis,Arachnida,n,y,n,n,once_thrice,1,141,8,6,N
 Toft and Albo (2015),Pisaura mirabilis,Arachnida,n,y,n,n,once_six,1,141,8,8,NA,NA,NA,NA,78.6,21.5,69.4,17.25,NA,NA,NA,NA
 Toft and Albo (2015),Pisaura mirabilis,Arachnida,n,y,n,n,once_many,1,141,8,9,NA,NA,NA,NA,78.6,21.5,55.8,13.8,NA,NA,NA,NA
 Tseng et al. (2007),Callosobruchus maculatus,Coleoptera,n,n,y,n,once_twice,1,142,21,21,13.4,2.7,15.5,3.2,77.3,30.2,96.5,27.5,NA,NA,NA,NA
-Tuler et al. (2018),Tenuisvalvae notata,Coleoptera,n,n,n,n,once_ten,1,143,10,10,NA,NA,NA,NA,14.57,11.68,10.18,9.49,7.8,6.8,5.53,6.7
+Tuler et al. (2018),Tenuisvalvae gnoma,Coleoptera,n,n,n,n,once_ten,1,143,10,10,NA,NA,NA,NA,14.57,11.68,10.18,9.49,7.8,6.8,5.53,6.7
 "Uhl, Schmitt and Schafer (2005)",Pholcus phalangioides,Arachnida,n,n,n,y,once_twice,1,144,29,35,NA,NA,NA,NA,NA,NA,NA,NA,68.85,39.56,53.86,28.27
 Vahed (2003),Leptophyes punctatissima,Orthoptera,n,y,n,n,once_twice,1,145,8,12,NA,NA,NA,NA,40.1,19.52,98,19.75,NA,NA,NA,NA
 Wagner et al. (2001),Gryllus lineaticeps,Orthoptera,n,y,y,y,once_thrice,1,146,19,19,58.5,24,78.4,24,332.6,353.1,661.8,305.6,NA,NA,NA,NA

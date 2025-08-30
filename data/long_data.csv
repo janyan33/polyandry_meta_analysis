@@ -33,15 +33,15 @@
 "32","Cook (1999)","Plodia interpunctella","Lepidoptera","n","y","y","y","once_twice",1,25,26,18,9.33,1.8,9.94,3.4
 "33","Cook (1999)","Plodia interpunctella","Lepidoptera","n","y","y","y","once_twice",2,25,25,20,9.41,2.2,9.27,2.1
 "34","Croshaw and Gomez (2018)","Drosophila arizonae","Diptera","n","n","y","n","once_few",1,27,24,28,40.1,14.65,43.44,10.58
-"35","de Morais et al. (2012)","Grapholita molesta ","Lepidoptera","n","y","y","y","once_few",1,28,23,11,12.3,5.56,14,7.5
+"35","de Morais et al. (2012)","Grapholita molesta","Lepidoptera","n","y","y","y","once_few",1,28,23,11,12.3,5.56,14,7.5
 "36","den Hollander and Gwynne (2009)","Callosobruchus maculatus","Coleoptera","y","n","y","n","once_four",1,29,26,23,8.73,1.71,7.81,1.47
 "37","Di et al. (2023)","Spodoptera litura","Lepidoptera","n","y","y","n","once_twice",1,30,30,20,7.91,2.54,8.73,2.66
 "38","Domek and Johnson (1991)","Cotinis nitida","Coleoptera","n","n","y","n","once_twice",1,32,25,25,23.1,6.5,23,6.5
 "39","Domek and Johnson (1991)","Cotinis nitida","Coleoptera","n","n","y","n","once_twice",2,32,25,25,14.9,4.5,13.9,5
 "40","Dunn et al. (2005)","Coelopa frigida","Diptera","n","n","y","n","once_four",1,34,60,60,6.13,0.93,6.47,1.24
-"41","Duran, Medina and Quintero (2014)","Sangalopsis veliterna","Lepidoptera","y","y","y","y","once_twice",1,35,15,15,12.55,5.22,14.45,6.62
-"42","Duran, Medina and Quintero (2014)","Sangalopsis veliterna","Lepidoptera","y","y","y","y","once_four",1,35,15,15,12.55,5.22,12.33,9.49
-"43","Duran, Medina and Quintero (2014)","Sangalopsis veliterna","Lepidoptera","y","y","y","y","once_eight",1,35,15,15,12.55,5.22,13.87,7.51
+"41","Duran, Medina and Quintero (2014)","Sangalopsis microleuca","Lepidoptera","y","y","y","y","once_twice",1,35,15,15,12.55,5.22,14.45,6.62
+"42","Duran, Medina and Quintero (2014)","Sangalopsis microleuca","Lepidoptera","y","y","y","y","once_four",1,35,15,15,12.55,5.22,12.33,9.49
+"43","Duran, Medina and Quintero (2014)","Sangalopsis microleuca","Lepidoptera","y","y","y","y","once_eight",1,35,15,15,12.55,5.22,13.87,7.51
 "44","Etges & Heed (1992)","Drosophila mojavensis","Diptera","y","n","y","n","once_twice",1,36,67,67,21.157,NA,19.493,NA
 "45","Etges & Heed (1992)","Drosophila mojavensis","Diptera","y","n","y","n","once_four",1,36,67,64,21.157,NA,17.141,NA
 "46","Fadamiro and Baker (1999)","Ostrinia nubilalis","Lepidoptera","y","y","y","y","once_twice",1,37,48,15,13,3.6,11.8,2.6
@@ -52,7 +52,7 @@
 "51","Fan et al. (2015)","Galerucella birmanica","Coleoptera","y","n","y","n","once_twice",2,38,10,9,34.29,6.53,29.84,8.1
 "52","Fan et al. (2015)","Galerucella birmanica","Coleoptera","y","n","y","n","once_four",2,38,10,7,34.29,6.53,21.9,4.63
 "53","Fedorka and Mousseau (2002)","Allonemobius socius","Orthoptera","n","y","y","n","once_four",1,39,73,24,71.51,34,49.05,25.2
-"54","Fedorka and Zuk (2005)","Allonemobious socius","Orthoptera","n","y","y","n","once_four",1,40,55,47,31.1,30.7,20,13.69
+"54","Fedorka and Zuk (2005)","Allonemobius socius","Orthoptera","n","y","y","n","once_four",1,40,55,47,31.1,30.7,20,13.69
 "55","Flay, Wang and He (2014)","Sitophilus oryzae","Coleoptera","y","n","y","n","once_five",1,42,10,10,85.66,NA,54.87,NA
 "56","Flay, Wang and He (2014)","Sitophilus oryzae","Coleoptera","y","n","y","n","once_ten",1,42,10,10,85.66,NA,42.99,NA
 "57","Fox (1993)","Callosobruchus maculatus","Coleoptera","n","n","y","n","once_few",2,43,114,115,8.4,1.06,9,1.07
@@ -91,9 +91,9 @@
 "90","Jagadeeshan et al. (2015)","Drosophila sechellia","Diptera","y","n","y","n","once_thrice",3,63,20,20,55,NA,47.18,NA
 "91","Jagadeeshan et al. (2015)","Drosophila sechellia","Diptera","y","n","y","n","once_six",3,63,20,20,55,NA,25.9,NA
 "92","Jagadeeshan et al. (2015)","Drosophila sechellia","Diptera","y","n","y","n","once_nine",3,63,20,20,55,NA,20.64,NA
-"93","Jagadeeshan et al. (2015)","Drosophila mauritania","Diptera","y","n","y","n","once_thrice",4,63,20,20,56.2,NA,27.5,NA
-"94","Jagadeeshan et al. (2015)","Drosophila mauritania","Diptera","y","n","y","n","once_six",4,63,20,20,56.2,NA,22,NA
-"95","Jagadeeshan et al. (2015)","Drosophila mauritania","Diptera","y","n","y","n","once_nine",4,63,20,20,56.2,NA,21.14,NA
+"93","Jagadeeshan et al. (2015)","Drosophila mauritiana","Diptera","y","n","y","n","once_thrice",4,63,20,20,56.2,NA,27.5,NA
+"94","Jagadeeshan et al. (2015)","Drosophila mauritiana","Diptera","y","n","y","n","once_six",4,63,20,20,56.2,NA,22,NA
+"95","Jagadeeshan et al. (2015)","Drosophila mauritiana","Diptera","y","n","y","n","once_nine",4,63,20,20,56.2,NA,21.14,NA
 "96","Jagadeeshan et al. (2015)","Drosophila melanogaster","Diptera","n","n","y","n","once_few",5,63,8,8,52.04,NA,40.4,NA
 "97","Jagadeeshan et al. (2015)","Drosophila melanogaster","Diptera","n","n","y","n","once_many",5,63,8,8,52.04,NA,34.58,NA
 "98","Ji et al. (2007)","Neoseiulus cucumeris","Mesostigmata","n","n","y","n","once_twice",1,65,10,10,31.5,2.18,26.4,2.21
@@ -110,19 +110,19 @@
 "109","Londono-Nieto et al. (2023)","Drosophila melanogaster","Diptera","y","n","y","n","once_three",1,82,74,73,43.44,17.6,28.56,9.55
 "110","Londono-Nieto et al. (2023)","Drosophila melanogaster","Diptera","y","n","y","n","once_three",2,82,74,71,31.89,12.13,22.11,8.09
 "111","Londono-Nieto et al. (2023)","Drosophila melanogaster","Diptera","y","n","y","n","once_three",3,82,71,66,29.72,6.74,23.72,8.93
-"112","Lopez and Hoddle (2014)","Agrilus auroguttatus","Coleoptera","y","n","y","n","once_twice",1,83,8,6,16.5,7.35,13.3,5.63
-"113","Lopez and Hoddle (2014)","Agrilus auroguttatus","Coleoptera","y","n","y","n","once_twice",2,83,8,8,72.1,17.82,75.6,22.06
-"114","Lopez and Hoddle (2014)","Agrilus auroguttatus","Coleoptera","y","n","y","n","once_twice",3,83,8,7,122.1,55.15,109.1,64.29
+"112","Lopez and Hoddle (2014)","Agrilus coxalis auroguttatus","Coleoptera","y","n","y","n","once_twice",1,83,8,6,16.5,7.35,13.3,5.63
+"113","Lopez and Hoddle (2014)","Agrilus coxalis auroguttatus","Coleoptera","y","n","y","n","once_twice",2,83,8,8,72.1,17.82,75.6,22.06
+"114","Lopez and Hoddle (2014)","Agrilus coxalis auroguttatus","Coleoptera","y","n","y","n","once_twice",3,83,8,7,122.1,55.15,109.1,64.29
 "115","Lubanga, Peters and Steinbauer (2018)","Aacanthocnema dobsoni","Hemiptera","y","n","y","n","once_thrice",1,84,37,39,29.31,13.27,25.94,8.81
 "116","Macke et al. (2012)","Tetranychus urticae","Arachnida","n","n","y","n","once_many",1,86,44,46,45.17,10.75,44.18,10.58
 "117","Mangan (1997)","Anastrepha ludens","Diptera","y","n","y","n","once_many",1,88,72,58,39.4,23.6,27.2,18.8
 "118","Mangan (1997)","Anastrepha ludens","Diptera","y","n","y","n","once_many",2,88,139,134,61.7,39.7,50.9,37.9
 "119","Mangan (1997)","Anastrepha ludens","Diptera","y","n","y","n","once_many",3,88,133,93,52.2,30.7,50.9,22.9
 "120","Mangan (1997)","Anastrepha ludens","Diptera","y","n","y","n","once_many",4,88,189,182,123,61.5,76.7,45.5
-"121","Martin and Hosken (2004)","Saltella sphondylli","Diptera","n","n","y","n","once_twice",1,91,20,20,22.3,6.26,21.4,7.16
-"122","Martin and Hosken (2004)","Saltella sphondylli","Diptera","n","n","y","n","once_four",1,91,20,20,22.3,6.26,20.7,5.99
-"123","Martin and Hosken (2004)","Saltella sphondylli","Diptera","n","n","y","n","once_six",1,91,20,20,22.3,6.26,19.45,7.07
-"124","Martin and Hosken (2004)","Saltella sphondylli","Diptera","n","n","y","n","once_twice",2,91,45,45,19.56,6.84,18.2,6.57
+"121","Martin and Hosken (2004)","Saltella sphondylii","Diptera","n","n","y","n","once_twice",1,91,20,20,22.3,6.26,21.4,7.16
+"122","Martin and Hosken (2004)","Saltella sphondylii","Diptera","n","n","y","n","once_four",1,91,20,20,22.3,6.26,20.7,5.99
+"123","Martin and Hosken (2004)","Saltella sphondylii","Diptera","n","n","y","n","once_six",1,91,20,20,22.3,6.26,19.45,7.07
+"124","Martin and Hosken (2004)","Saltella sphondylii","Diptera","n","n","y","n","once_twice",2,91,45,45,19.56,6.84,18.2,6.57
 "125","McNamara, Elgar and Jones (2008a)","Cadra cautella","Lepidoptera","n","y","y","y","once_twice",1,93,15,18,7.78,2.36,6.41,1.61
 "126","McNamara, Elgar and Jones (2008a)","Cadra cautella","Lepidoptera","n","y","y","y","once_twice",2,93,18,18,6.94,2.08,5.14,1.15
 "127","McNamara, Elgar and Jones (2008b)","Cadra cautella","Lepidoptera","n","y","y","y","once_twice",1,94,51,6,5,0.77,5.5,0.84
@@ -163,22 +163,22 @@
 "162","Perry and Rowe (2008)","Adalia bipunctata","Coleoptera","n","y","y","y","once_thrice",1,114,10,23,156.7,36.37,151.2,36.45
 "163","Priest et al. (2008)","Drosophila melanogaster","Diptera","y","n","y","n","few_many",1,115,195,130,35.77,NA,31.93,NA
 "164","Priest et al. (2008)","Drosophila melanogaster","Diptera","y","n","y","n","few_many",1,115,195,179,35.77,NA,24.28,NA
-"165","Radwan and Rysinska (1999)","Caloglyphus berlesei","Arachnida","y","n","y","n","once_four",1,117,12,12,17.98,NA,17.98,NA
-"166","Radwan and Rysinska (1999)","Caloglyphus berlesei","Arachnida","y","n","y","n","once_four",1,117,12,12,15,NA,11,NA
-"167","Radwan and Rysinska (1999)","Caloglyphus berlesei","Arachnida","y","n","y","n","once_four",1,117,12,12,18,NA,16,NA
-"168","Radwan and Rysinska (1999)","Caloglyphus berlesei","Arachnida","y","n","y","n","once_four",1,117,12,12,14,NA,14,NA
-"169","Radwan and Rysinska (1999)","Caloglyphus berlesei","Arachnida","y","n","y","n","once_four",1,117,12,12,15,NA,11,NA
-"170","Radwan and Rysinska (1999)","Caloglyphus berlesei","Arachnida","y","n","y","n","once_four",2,117,12,12,16.93,NA,12.02,NA
-"171","Radwan and Rysinska (1999)","Caloglyphus berlesei","Arachnida","y","n","y","n","once_four",2,117,12,12,15,NA,13,NA
-"172","Radwan and Rysinska (1999)","Caloglyphus berlesei","Arachnida","y","n","y","n","once_four",2,117,12,12,16.47,NA,11.52,NA
-"173","Radwan and Rysinska (1999)","Caloglyphus berlesei","Arachnida","y","n","y","n","once_four",2,117,12,12,16.92,NA,12.45,NA
-"174","Radwan and Rysinska (1999)","Caloglyphus berlesei","Arachnida","y","n","y","n","once_four",2,117,12,12,16.96,NA,14,NA
+"165","Radwan and Rysinska (1999)","Sancassania berlesei","Arachnida","y","n","y","n","once_four",1,117,12,12,17.98,NA,17.98,NA
+"166","Radwan and Rysinska (1999)","Sancassania berlesei","Arachnida","y","n","y","n","once_four",1,117,12,12,15,NA,11,NA
+"167","Radwan and Rysinska (1999)","Sancassania berlesei","Arachnida","y","n","y","n","once_four",1,117,12,12,18,NA,16,NA
+"168","Radwan and Rysinska (1999)","Sancassania berlesei","Arachnida","y","n","y","n","once_four",1,117,12,12,14,NA,14,NA
+"169","Radwan and Rysinska (1999)","Sancassania berlesei","Arachnida","y","n","y","n","once_four",1,117,12,12,15,NA,11,NA
+"170","Radwan and Rysinska (1999)","Sancassania berlesei","Arachnida","y","n","y","n","once_four",2,117,12,12,16.93,NA,12.02,NA
+"171","Radwan and Rysinska (1999)","Sancassania berlesei","Arachnida","y","n","y","n","once_four",2,117,12,12,15,NA,13,NA
+"172","Radwan and Rysinska (1999)","Sancassania berlesei","Arachnida","y","n","y","n","once_four",2,117,12,12,16.47,NA,11.52,NA
+"173","Radwan and Rysinska (1999)","Sancassania berlesei","Arachnida","y","n","y","n","once_four",2,117,12,12,16.92,NA,12.45,NA
+"174","Radwan and Rysinska (1999)","Sancassania berlesei","Arachnida","y","n","y","n","once_four",2,117,12,12,16.96,NA,14,NA
 "175","Ronn et al. (2006)","Callosobruchus maculatus","Coleoptera","y","n","y","n","once_many",1,119,15,15,9.9,2.3,7.9,1.3
 "176","Ronn et al. (2006)","Callosobruchus maculatus","Coleoptera","y","n","y","n","once_many",2,119,15,15,7.9,1.2,6.6,0.7
-"177","Ronn et al. (2006)","Callosobruchus chinesis","Coleoptera","y","n","y","n","once_many",3,119,15,15,9.1,1.8,6.4,1.5
+"177","Ronn et al. (2006)","Callosobruchus chinensis","Coleoptera","y","n","y","n","once_many",3,119,15,15,9.1,1.8,6.4,1.5
 "178","Ronn et al. (2006)","Callosobruchus rhodesianus","Coleoptera","y","n","y","n","once_many",4,119,15,15,7,1.4,5.9,1.1
 "179","Ronn et al. (2006)","Callosobruchus analis","Coleoptera","y","n","y","n","once_many",5,119,15,15,8.3,1.9,6.5,1.1
-"180","Ronn et al. (2006)","Callosobruchus subinnatatus","Coleoptera","y","n","y","n","once_many",6,119,15,15,10.3,3.7,8.5,1.5
+"180","Ronn et al. (2006)","Callosobruchus subinnotatus","Coleoptera","y","n","y","n","once_many",6,119,15,15,10.3,3.7,8.5,1.5
 "181","Ronn et al. (2006)","Callosobruchus phaseoli","Coleoptera","y","n","y","n","once_many",7,119,15,15,9.5,1.6,9.1,1.4
 "182","Rooney & Lewis (2002)","Photinus ignitus","Coleoptera","n","y","y","n","once_thrice",1,120,20,20,4.9,1.3,5.8,1.3
 "183","Rooney & Lewis (2002)","Ellychnia corrusca","Coleoptera","n","y","y","n","once_thrice",1,120,35,35,7.8,1.8,8.2,1.8
@@ -190,7 +190,7 @@
 "189","Sahu (2012)","Anegleis cardoni","Coleoptera","n","n","y","y","once_fifteen",1,124,10,10,101,2.84,72.4,8.9
 "190","Sahu (2012)","Anegleis cardoni","Coleoptera","n","n","y","y","once_twenty",1,124,10,10,101,2.84,59.5,2.8
 "191","Sahu (2012)","Anegleis cardoni","Coleoptera","n","n","y","y","once_twentyfive",1,124,10,10,101,2.84,53.3,5.7
-"192","Sakurai (1996)","Reptortus clavatus","Hemiptera","n","n","y","n","once_twice",1,127,25,13,77.4,20.3,79.2,25
+"192","Sakurai (1996)","Riptortus clavatus","Hemiptera","n","n","y","n","once_twice",1,127,25,13,77.4,20.3,79.2,25
 "193","Sakurai and Kasuya (2008)","Callosobruchus chinensis","Coleoptera","n","n","y","y","once_twice",1,128,20,26,12.25,1.97,10.96,1.23
 "194","Sakurai and Kasuya (2008)","Callosobruchus chinensis","Coleoptera","n","n","y","y","once_twice",2,128,27,24,11.37,2.1,11.96,1.2
 "195","Santolamazza-Carbone and Pestana (2010)","Anaphes nitens","Hymenoptera","n","n","y","y","once_twice",1,130,17,21,21.5,6.47,21.11,6.69
@@ -202,7 +202,7 @@
 "201","Simmons (1988)","Gryllus bimaculatus","Orthoptera","n","y","y","n","once_thrice",1,136,10,10,44.5,10.8,39.3,14.8
 "202","Sousa-Souto et al. (2006)","Podisus nigrispinus","Hemiptera","n","n","y","n","once_twice",1,137,15,10,75.46,NA,69.48,NA
 "203","Sousa-Souto et al. (2006)","Podisus nigrispinus","Hemiptera","n","n","y","n","once_thrice",1,137,15,10,75.46,NA,59.38,NA
-"204","Svard and McNeil (1994)","Pseudaletia unipuncta","Lepidoptera","n","y","y","y","once_twice",1,138,23,24,15.8,3.4,18.8,2.9
+"204","Svard and McNeil (1994)","Mythimna unipuncta","Lepidoptera","n","y","y","y","once_twice",1,138,23,24,15.8,3.4,18.8,2.9
 "205","Taylor et al. (2008)","Drosophila simulans","Diptera","y","n","y","n","once_twice",1,140,21,26,24.6,NA,23.08,NA
 "206","Taylor et al. (2008)","Drosophila simulans","Diptera","y","n","y","n","once_thrice",2,140,21,15,24.6,NA,24.15,NA
 "207","Tseng et al. (2007)","Callosobruchus maculatus","Coleoptera","n","n","y","n","once_twice",1,142,21,21,13.4,2.7,15.5,3.2
