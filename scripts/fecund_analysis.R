@@ -17,14 +17,15 @@ My_Theme = theme(
   axis.text.y = element_text(size = 16))
 
 ########################### CLEANING TREATMENT DATA BY COMBINING INTO FOUR LEVELS ##############################
-data_fecund <- read.csv("fecund_data.csv") |>
+data_fecund <- read.csv("data/fecund_data.csv") |>
                filter(nzchar(source))
 
 unique(data_fecund$treatment)
 length(unique(data_fecund$study)) # 157 studies
 
 # once-few treatments
-data_fecund$treatment[data_fecund$treatment %in% paste0("once_", c("thrice", "three", "four"))] <- "once_few"
+data_fecund$treatment[data_fecund$treatment %in% 
+                     paste0("once_", c("thrice", "three", "four"))] <- "once_few"
 
 ## once-many treatments
 many_vec <- c("five", "six", "seven", "eight", "nine",
@@ -51,7 +52,7 @@ data_fecund <- escalc(measure = "ROM", data = data_fecund,
                       m2i = ifelse(is.na(con_fert), con_fecund, con_fert), 
                       sd1i = ifelse(is.na(exp_fert), exp_fecund_SD, exp_fert_SD), 
                       sd2i = ifelse(is.na(con_fert_SD), con_fecund_SD, con_fert_SD), 
-                      n1i = exp_N, n2i = con_N, 
+                      n1i = exp_N, n2i = adjusted_con_N, 
                       slab = source, 
                       vtype = "AVHO")
 
@@ -60,9 +61,18 @@ length(data_fecund$yi) # 325 effect sizes
 ############################################# OVERALL MODEL ####################################################
 data_fecund$experiment <- as.factor(data_fecund$experiment)
 data_fecund$study <- as.factor(data_fecund$study)
+data_fecund$species <- as.factor(data_fecund$species)
 
-overall_model <- rma.mv(yi, vi, data = data_fecund, random = ~ 1|study/experiment,
-                       method = "REML")
+# Creating a duplicate species variable for the phylogenetic analysis
+# I don't entirely understand why this is necessary
+data_fecund$species_phylo <- data_fecund$species
+
+overall_model <- rma.mv(yi, vi, data = data_fecund, 
+                        random = list( ~ 1|study/experiment,
+                                       ~ 1|species,
+                                       ~ 1|species_phylo),
+                        R = list(species_phylo = phylo_cor),
+                        method = "REML")
 
 summary(overall_model)
 forest(overall_model) # checked the extreme values, not errors
@@ -71,15 +81,19 @@ forest(overall_model) # checked the extreme values, not errors
 i2_ml(overall_model)
 
 ######################################### TREATMENT MODERATOR MODEL #############################################
-treatment_model <- rma.mv(yi, vi, data = data_fecund, random = ~ 1|study/experiment,
-                        method = "REML",
-                        mods = ~ 0 + treatment)
+treatment_model <- rma.mv(yi, vi, data = data_fecund, 
+                          random = list( ~ 1|study/experiment,
+                                         ~ 1|species,
+                                         ~ 1|species_phylo),
+                          R = list(species_phylo = phylo_cor),
+                          method = "REML",
+                          mods = ~ 0 + treatment)
 
 summary(treatment_model)
 
 (treatment_fig <- orchard_plot(treatment_model, xlab = "Effect size (log response ratio)", 
              group = "source",  
-             mod = "treatment", twig.size = NA, branch.size = 2, trunk.size = 0.6, angle = 45, flip = TRUE, 
+             mod = "treatment", twig.size = 0.5, branch.size = 2, trunk.size = 0.6, angle = 45, flip = TRUE, 
              alpha = 0.4, g = T) + theme(legend.position = "top") + ylim(-1.5, 1.65) +
              scale_fill_manual(values = c("#004e89","#2A8EDB","#ABDBFF", "#E9F5FF")) +
              scale_color_manual(values = c("grey20", "grey20", "grey20", "grey20")))
@@ -87,31 +101,37 @@ summary(treatment_model)
 ggsave(treatment_fig, filename = "fig_fecund_treatment.png", width = 6, height = 4)
 
 #################################### CONTINOUS HOUSING MODERATOR MODEL ###########################################
-harass_model <- rma.mv(yi, vi, data = data_fecund, random = ~ 1|study/experiment,
-                          method = "REML",
-                          mods = ~ 1 + harass.) # change the intercept from 1 to 0 to get model results relative to zero
+harass_model <- rma.mv(yi, vi, data = data_fecund, 
+                       random = list( ~ 1|study/experiment,
+                                      ~ 1|species,
+                                      ~ 1|species_phylo),
+                       R = list(species_phylo = phylo_cor),
+                       mods = ~ 1 + harass.)
 
 summary(harass_model)
 
-harass_fig <- orchard_plot(harass_model, xlab = "Effect size (log response ratio)", 
+(harass_fig <- orchard_plot(harass_model, xlab = "Effect size (log response ratio)", 
              group = "study",  
-             mod = "harass.", twig.size = NA, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
+             mod = "harass.", twig.size = 0.5, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
              alpha = 0.35, g = TRUE) + theme(legend.position = "top") + 
              scale_fill_manual(values = c("grey100", "grey25")) +
-             scale_color_manual(values = c("grey4", "grey4")) + ylim(-1.65, 1.65)
+             scale_color_manual(values = c("grey4", "grey4")) + ylim(-1.65, 1.65))
 
 ggsave(harass_fig, filename = "fig_fecund_harass.png", width = 6, height = 4)
 
 #################################### PARTIAL VS. LIFETIME FITNESS MODEL ###########################################
-lifetime_model <- rma.mv(yi, vi, data = data_fecund, random = ~ 1|study/experiment,
-                       method = "REML",
-                       mods = ~ 1 + lifetime.) # change the intercept from 1 to 0 to get model results relative to zero
+lifetime_model <- rma.mv(yi, vi, data = data_fecund, 
+                         random = list( ~ 1|study/experiment,
+                                        ~ 1|species,
+                                        ~ 1|species_phylo),
+                         R = list(species_phylo = phylo_cor),
+                         mods = ~ 1 + lifetime.) # change the intercept from 1 to 0 to get model results relative to zero
 
 summary(lifetime_model)
 
 (lifetime_plot <- orchard_plot(lifetime_model, xlab = "Effect size (log response ratio)", 
              group = "study",  
-             mod = "lifetime.", twig.size = NA, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
+             mod = "lifetime.", twig.size = 0.5, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
              alpha = 0.35, g = TRUE) + theme(legend.position = "top") + 
              scale_fill_manual(values = c("grey100", "grey25")) +
              scale_color_manual(values = c("grey4", "grey4")) + ylim(-1.65, 1.65))
@@ -119,15 +139,18 @@ summary(lifetime_model)
 ggsave(lifetime_plot, filename = "fig_fecund_lifetime.png", width = 6, height = 4)
 
 ############################################## NUPTIAL GIFT MODEL #################################################
-gift_model <- rma.mv(yi, vi, data = data_fecund, random = ~ 1|study/experiment,
-                         method = "REML",
-                         mods = ~ 1 + nup_gift.) # change the intercept from 1 to 0 to get model results relative to zero
+gift_model <- rma.mv(yi, vi, data = data_fecund, 
+                     random = list( ~ 1|study/experiment,
+                                    ~ 1|species,
+                                    ~ 1|species_phylo),
+                     R = list(species_phylo = phylo_cor),
+                     mods = ~ 1 + nup_gift.) # change the intercept from 1 to 0 to get model results relative to zero
 
 summary(gift_model)
 
 (gift_fig <- orchard_plot(gift_model, xlab = "Effect size (log response ratio)", 
              group = "study",  
-             mod = "nup_gift.", twig.size = NA, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
+             mod = "nup_gift.", twig.size = 0.5, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
              alpha = 0.35, g = TRUE) + theme(legend.position = "top") +  
              scale_fill_manual(values = c("grey100", "grey25")) +
              scale_color_manual(values = c("grey4", "grey4")) + ylim(-1.65, 1.65))
@@ -135,18 +158,21 @@ summary(gift_model)
 ggsave(gift_fig, filename = "fig_fecund_gift.png", width = 6, height = 4)
             
 ############################################## SELECTION BIAS MODEL ##############################################
-bias_model <- rma.mv(yi, vi, data = data_fecund, random = ~ 1|study/experiment,
-                         method = "REML",
-                         mods = ~ 1 + bias.) # change the intercept from 1 to 0 to get model results relative to zero
+bias_model <- rma.mv(yi, vi, data = data_fecund, 
+                     random = list( ~ 1|study/experiment,
+                                    ~ 1|species,
+                                    ~ 1|species_phylo),
+                     R = list(species_phylo = phylo_cor),
+                     mods = ~ 1 + bias.) # change the intercept from 1 to 0 to get model results relative to zero
 
 summary(bias_model)
 
-bias_fig <- orchard_plot(bias_model, xlab = "Effect size (log response ratio)", 
+(bias_fig <- orchard_plot(bias_model, xlab = "Effect size (log response ratio)", 
              group = "study",  
-             mod = "bias.", twig.size = NA, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
+             mod = "bias.", twig.size = 0.5, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
              alpha = 0.35, g = TRUE) + theme(legend.position = "top") + 
              scale_fill_manual(values = c("grey100", "grey25")) +
-             scale_color_manual(values = c("grey4", "grey4")) + ylim(-1.65, 1.65)
+             scale_color_manual(values = c("grey4", "grey4")) + ylim(-1.65, 1.65))
 
 ggsave(bias_fig, filename = "fig_fecund_bias.png", width = 6, height = 4)
 
