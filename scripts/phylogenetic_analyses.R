@@ -187,7 +187,7 @@ ggcorrplot::ggcorrplot(phylo_cor_long, sig.level = 0.05, lab_size = 1,
                        limit = c(0,1)) + labs(fill = "Correlation")
 
 # Save phylogenetic correlation matrix 
-save(phylo_cor, file = "data/phylo_cor_long.Rdata")
+save(phylo_cor_long, file = "data/phylo_cor_long.Rdata")
 
 
 

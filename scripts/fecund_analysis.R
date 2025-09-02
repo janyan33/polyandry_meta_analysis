@@ -63,6 +63,10 @@ data_fecund$experiment <- as.factor(data_fecund$experiment)
 data_fecund$study <- as.factor(data_fecund$study)
 data_fecund$species <- as.factor(data_fecund$species)
 
+# Loading in phylogenetic data
+load("data/fecund_tree.Rdata")
+load("data/phylo_cor_fecund.Rdata")
+
 # Creating a duplicate species variable for the phylogenetic analysis
 # I don't entirely understand why this is necessary
 data_fecund$species_phylo <- data_fecund$species
@@ -189,9 +193,13 @@ data_fecund_order <- data_fecund %>%
                      order != "Neuroptera" & # N = 3
                      order != "Siphonaptera") # N = 1
 
-order_fecund_model <- rma.mv(yi, vi, data = data_fecund_order, random = ~ 1|study/experiment,
-                      method = "REML",
-                      mods = ~ 1 + order) # change the intercept from 1 to 0 to get model results relative to zero
+order_fecund_model <- rma.mv(yi, vi, data = data_fecund_order, 
+                             random = list( ~ 1|study/experiment,
+                                            ~ 1|species,
+                                            ~ 1|species_phylo),
+                             R = list(species_phylo = phylo_cor_long),
+                             method = "REML",
+                             mods = ~ 1 + order) # change the intercept from 1 to 0 to get model results relative to zero
 
 summary(order_fecund_model)
 

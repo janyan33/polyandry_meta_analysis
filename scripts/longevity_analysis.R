@@ -18,7 +18,7 @@ library(orchaRd)
 
 # SCRIPT FOR ANALYZING EFFECT OF POLYANDRY ON LONGEVITY
 # Load data in
-data_long <- read.csv("long_data.csv") |>
+data_long <- read.csv("data/long_data.csv") |>
              filter(nzchar(source))
 
 ############################ CLEANING TREATMENT DATA BY COMBINING INTO FOUR LEVELS #############################
@@ -51,7 +51,7 @@ data_long <- escalc(measure = "ROM", data = data_long,
                       m2i = con_long, 
                       sd1i = exp_long_SD, 
                       sd2i = con_long_SD, 
-                      n1i = exp_N, n2i = con_N, 
+                      n1i = exp_N, n2i = adjusted_con_N, 
                       slab = source, vtype = "AVHO")
 
 length(data_long$yi) # 242 effect sizes
@@ -59,8 +59,21 @@ length(data_long$yi) # 242 effect sizes
 ########################### OVERALL MODEL ############################################
 data_long$experiment <- as.factor(data_long$experiment)
 data_long$study <- as.factor(data_long$study)
+data_long$species <- as.factor(data_long$species)
 
-overall_model <- rma.mv(yi, vi, data = data_long, random = ~ 1|study/experiment,
+# Loading in phylogenetic data
+load("data/long_tree.Rdata")
+load("data/phylo_cor_long.Rdata")
+
+# Creating a duplicate species variable for the phylogenetic analysis
+# I don't entirely understand why this is necessary
+data_long$species_phylo <- data_long$species
+
+overall_model <- rma.mv(yi, vi, data = data_long, 
+                        random = list( ~ 1|study/experiment,
+                                       ~ 1|species,
+                                       ~ 1|species_phylo),
+                        R = list(species_phylo = phylo_cor_long),
                         method = "REML")
 
 summary(overall_model)
@@ -70,61 +83,77 @@ forest(overall_model)
 i2_ml(overall_model)
 
 #### TREATMENT MODEL (sig)
-treatment_model <- rma.mv(yi, vi, data = data_long, random = ~ 1|study/experiment,
+treatment_model <- rma.mv(yi, vi, data = data_long, 
+                          random = list( ~ 1|study/experiment,
+                                         ~ 1|species,
+                                         ~ 1|species_phylo),
+                          R = list(species_phylo = phylo_cor_long),
                           method = "REML",
                           mods = ~ 0 + treatment)
 
 summary(treatment_model)
 
-treatment_fig <- orchard_plot(treatment_model, xlab = "Effect size (log response ratio)", 
+(treatment_fig <- orchard_plot(treatment_model, xlab = "Effect size (log response ratio)", 
              group = "study",  
-             mod = "treatment", twig.size = NA, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
+             mod = "treatment", twig.size = 0.5, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
              alpha = 0.35, g = TRUE) + theme(legend.position = "top") + 
              scale_fill_manual(values = c("#004e89","#2A8EDB","#ABDBFF","#E9F5FF")) +
-             scale_color_manual(values = c("grey4", "grey4", "grey4", "grey4"))
+             scale_color_manual(values = c("grey4", "grey4", "grey4", "grey4")))
 
 #### HARASSMENT MODEL (no sig)
-harass_model <- rma.mv(yi, vi, data = data_long, random = ~ 1|study/experiment,
+harass_model <- rma.mv(yi, vi, data = data_long, 
+                       random = list( ~ 1|study/experiment,
+                                      ~ 1|species,
+                                      ~ 1|species_phylo),
+                       R = list(species_phylo = phylo_cor_long),
                        method = "REML",
                        mods = ~ 1 + harass.)
 
 summary(harass_model)
 
-harass_fig <- orchard_plot(harass_model, xlab = "Effect size (log response ratio)", 
+(harass_fig <- orchard_plot(harass_model, xlab = "Effect size (log response ratio)", 
              group = "study",  
-             mod = "harass.", twig.size = NA, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
+             mod = "harass.", twig.size = 0.5, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
              alpha = 0.35, g = TRUE) + theme(legend.position = "top") + 
              scale_fill_manual(values = c("grey100", "grey25")) +
-             scale_color_manual(values = c("grey4", "grey4"))
+             scale_color_manual(values = c("grey4", "grey4")))
 
 #### NUPTIAL GIFT MODEL (sig)
-gift_model <- rma.mv(yi, vi, data = data_long, random = ~ 1|study/experiment,
+gift_model <- rma.mv(yi, vi, data = data_long, 
+                     random = list( ~ 1|study/experiment,
+                                    ~ 1|species,
+                                    ~ 1|species_phylo),
+                     R = list(species_phylo = phylo_cor_long),
                      method = "REML",
-                     mods = ~ 0 + nup_gift.)
+                     mods = ~ 1 + nup_gift.)
 
 summary(gift_model)
 
-gift_fig <- orchard_plot(gift_model, xlab = "Effect size (log response ratio)", 
+(gift_fig <- orchard_plot(gift_model, xlab = "Effect size (log response ratio)", 
              group = "study",  
-             mod = "nup_gift.", twig.size = NA, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
+             mod = "nup_gift.", twig.size = 0.5, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
              alpha = 0.35, g = TRUE) + theme(legend.position = "top") + 
   scale_fill_manual(values = c("grey100", "grey25")) +
-  scale_color_manual(values = c("grey4", "grey4"))
+  scale_color_manual(values = c("grey4", "grey4")))
 
 
 #### SELECTION BIAS MODEL (sig)
-bias_model <- rma.mv(yi, vi, data = data_long, random = ~ 1|study/experiment,
+bias_model <- rma.mv(yi, vi, data = data_long, 
+                     random = list( ~ 1|study/experiment,
+                                    ~ 1|species,
+                                  ~ 1|species_phylo),
+                     R = list(species_phylo = phylo_cor_long),
                      method = "REML",
-                     mods = ~ 0 + bias.)
+                     mods = ~ 1 + bias.)
 
 summary(bias_model)
 
-bias_fig <- orchard_plot(bias_model, xlab = "Effect size (log response ratio)", 
+(bias_fig <- orchard_plot(bias_model, xlab = "Effect size (log response ratio)", 
              group = "study",  
-             mod = "bias.", twig.size = NA, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
+             mod = "bias.", twig.size = 0.5, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
              alpha = 0.35, g = TRUE) + theme(legend.position = "top") + 
              scale_fill_manual(values = c("grey100", "grey25")) +
-             scale_color_manual(values = c("grey4", "grey4"))
+             scale_color_manual(values = c("grey4", "grey4")))
 
 ## TAXONOMIC GROUP MODEL
 aggregate(data_long$order, by = list(data_long$order), FUN = length) 
@@ -136,7 +165,11 @@ data_long_order <- data_long %>%
                           order != "Thysanoptera")
 
 
-order_model <- rma.mv(yi, vi, data = data_long_order, random = ~ 1|study/experiment,
+order_model <- rma.mv(yi, vi, data = data_long_order, 
+                      random = list( ~ 1|study/experiment,
+                                     ~ 1|species,
+                                     ~ 1|species_phylo),
+                      R = list(species_phylo = phylo_cor_long),,
                       method = "REML",
                       mods = ~ 1 + order) 
 
@@ -144,7 +177,7 @@ summary(order_model)
 
 orchard_plot(order_model, xlab = "Effect size (log response ratio)", 
              group = "study",
-             mod = "order", twig.size = NA, branch.size = 2, trunk.size = 0.75, 
+             mod = "order", twig.size = 0.5, branch.size = 2, trunk.size = 0.75, 
              angle = 45, flip = TRUE, 
              alpha = 0.35, g = TRUE) + theme(legend.position = "top")
 
