@@ -58,6 +58,42 @@ data_fecund <- escalc(measure = "ROM", data = data_fecund,
 
 length(data_fecund$yi) # 325 effect sizes
 
+# CREATING A VARIANCE-COVARIANCE MATRIX 
+# Code taken from Mentesana et al. 2025: 10.5281/zenodo.14930059
+# Creating a var-covar matrix assuming a 0.5 correlation between effect sizes 
+# from the same study. covariance = (0.5 * sqrt(vi.1) * sqrt(vi.2))
+# Creates a matrix (called 'VCV_ESVar') with the dimensions =  
+# n(effect_sizes) x n(effect_sizes)
+
+VCV_ESVar <- matrix(0, nrow = nrow(data_fecund), 
+                    ncol = nrow(data_fecund))
+
+# Names rows and columns for each obsID
+rownames(VCV_ESVar) <- data_fecund[, "X"]
+colnames(VCV_ESVar) <- data_fecund[, "X"]
+
+# Finds effect sizes that come from the same study
+shared_coord <- which(data_fecund[, "study"] %in% 
+                        data_fecund[duplicated(data_fecund[, "study"]), 
+                                    "study"] == TRUE)
+
+combinations <- do.call("rbind", tapply(shared_coord, 
+                                        data_fecund[shared_coord, "study"], 
+                                        function(x) t(utils::combn(x, 2))))
+
+# Calculates the covariance between effect sizes and enters them in each 
+# combination of coordinates
+for (i in 1 : dim(combinations)[1]) {
+  p1 <- combinations[i, 1]
+  p2 <- combinations[i, 2]
+  p1_p2_cov <- 0.5 * sqrt(data_fecund[p1, "vi"]) * 
+    sqrt(data_fecund[p2, "vi"])
+  VCV_ESVar[p1, p2] <- p1_p2_cov
+  VCV_ESVar[p2, p1] <- p1_p2_cov
+} 
+
+diag(VCV_ESVar) <- data_fecund[, "vi"]
+
 ############################################# OVERALL MODEL ####################################################
 data_fecund$experiment <- as.factor(data_fecund$experiment)
 data_fecund$study <- as.factor(data_fecund$study)
@@ -71,7 +107,7 @@ load("data/phylo_cor_fecund.Rdata")
 # I don't entirely understand why this is necessary
 data_fecund$species_phylo <- data_fecund$species
 
-overall_model <- rma.mv(yi, vi, data = data_fecund, 
+overall_model <- rma.mv(yi, VCV_ESVar, data = data_fecund, 
                         random = list( ~ 1|study/experiment,
                                        ~ 1|species,
                                        ~ 1|species_phylo),
@@ -85,7 +121,7 @@ forest(overall_model) # checked the extreme values, not errors
 i2_ml(overall_model)
 
 ######################################### TREATMENT MODERATOR MODEL #############################################
-treatment_model <- rma.mv(yi, vi, data = data_fecund, 
+treatment_model <- rma.mv(yi, VCV_ESVar, data = data_fecund, 
                           random = list( ~ 1|study/experiment,
                                          ~ 1|species,
                                          ~ 1|species_phylo),
@@ -105,7 +141,7 @@ summary(treatment_model)
 ggsave(treatment_fig, filename = "fig_fecund_treatment.png", width = 6, height = 4)
 
 #################################### CONTINOUS HOUSING MODERATOR MODEL ###########################################
-harass_model <- rma.mv(yi, vi, data = data_fecund, 
+harass_model <- rma.mv(yi, VCV_ESVar, data = data_fecund, 
                        random = list( ~ 1|study/experiment,
                                       ~ 1|species,
                                       ~ 1|species_phylo),
@@ -124,7 +160,7 @@ summary(harass_model)
 ggsave(harass_fig, filename = "fig_fecund_harass.png", width = 6, height = 4)
 
 #################################### PARTIAL VS. LIFETIME FITNESS MODEL ###########################################
-lifetime_model <- rma.mv(yi, vi, data = data_fecund, 
+lifetime_model <- rma.mv(yi, VCV_ESVar, data = data_fecund, 
                          random = list( ~ 1|study/experiment,
                                         ~ 1|species,
                                         ~ 1|species_phylo),
@@ -143,7 +179,7 @@ summary(lifetime_model)
 ggsave(lifetime_plot, filename = "fig_fecund_lifetime.png", width = 6, height = 4)
 
 ############################################## NUPTIAL GIFT MODEL #################################################
-gift_model <- rma.mv(yi, vi, data = data_fecund, 
+gift_model <- rma.mv(yi, VCV_ESVar, data = data_fecund, 
                      random = list( ~ 1|study/experiment,
                                     ~ 1|species,
                                     ~ 1|species_phylo),
@@ -162,7 +198,7 @@ summary(gift_model)
 ggsave(gift_fig, filename = "fig_fecund_gift.png", width = 6, height = 4)
             
 ############################################## SELECTION BIAS MODEL ##############################################
-bias_model <- rma.mv(yi, vi, data = data_fecund, 
+bias_model <- rma.mv(yi, VCV_ESVar, data = data_fecund, 
                      random = list( ~ 1|study/experiment,
                                     ~ 1|species,
                                     ~ 1|species_phylo),
