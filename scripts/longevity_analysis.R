@@ -56,6 +56,42 @@ data_long <- escalc(measure = "ROM", data = data_long,
 
 length(data_long$yi) # 242 effect sizes
 
+# CREATING A VARIANCE-COVARIANCE MATRIX 
+# Code taken from Mentesana et al. 2025: 10.5281/zenodo.14930059
+# Creating a var-covar matrix assuming a 0.5 correlation between effect sizes 
+# from the same study. covariance = (0.5 * sqrt(vi.1) * sqrt(vi.2))
+# Creates a matrix (called 'VCV_ESVar') with the dimensions =  
+# n(effect_sizes) x n(effect_sizes)
+
+VCV_ESVar <- matrix(0, nrow = nrow(data_long), 
+                    ncol = nrow(data_long))
+
+# Names rows and columns for each obsID
+rownames(VCV_ESVar) <- data_long[, "X"]
+colnames(VCV_ESVar) <- data_long[, "X"]
+
+# Finds effect sizes that come from the same study
+shared_coord <- which(data_long[, "study"] %in% 
+                        data_long[duplicated(data_long[, "study"]), 
+                                    "study"] == TRUE)
+
+combinations <- do.call("rbind", tapply(shared_coord, 
+                                        data_long[shared_coord, "study"], 
+                                        function(x) t(utils::combn(x, 2))))
+
+# Calculates the covariance between effect sizes and enters them in each 
+# combination of coordinates
+for (i in 1 : dim(combinations)[1]) {
+  p1 <- combinations[i, 1]
+  p2 <- combinations[i, 2]
+  p1_p2_cov <- 0.5 * sqrt(data_long[p1, "vi"]) * 
+    sqrt(data_long[p2, "vi"])
+  VCV_ESVar[p1, p2] <- p1_p2_cov
+  VCV_ESVar[p2, p1] <- p1_p2_cov
+} 
+
+diag(VCV_ESVar) <- data_long[, "vi"]
+
 ########################### OVERALL MODEL ############################################
 data_long$experiment <- as.factor(data_long$experiment)
 data_long$study <- as.factor(data_long$study)
@@ -69,7 +105,7 @@ load("data/phylo_cor_long.Rdata")
 # I don't entirely understand why this is necessary
 data_long$species_phylo <- data_long$species
 
-overall_model <- rma.mv(yi, vi, data = data_long, 
+overall_model <- rma.mv(yi, VCV_ESVar, data = data_long, 
                         random = list( ~ 1|study/experiment,
                                        ~ 1|species,
                                        ~ 1|species_phylo),
@@ -101,7 +137,7 @@ summary(treatment_model)
              scale_color_manual(values = c("grey4", "grey4", "grey4", "grey4")))
 
 #### HARASSMENT MODEL (no sig)
-harass_model <- rma.mv(yi, vi, data = data_long, 
+harass_model <- rma.mv(yi, VCV_ESVar, data = data_long, 
                        random = list( ~ 1|study/experiment,
                                       ~ 1|species,
                                       ~ 1|species_phylo),
@@ -119,7 +155,7 @@ summary(harass_model)
              scale_color_manual(values = c("grey4", "grey4")))
 
 #### NUPTIAL GIFT MODEL (sig)
-gift_model <- rma.mv(yi, vi, data = data_long, 
+gift_model <- rma.mv(yi, VCV_ESVar, data = data_long, 
                      random = list( ~ 1|study/experiment,
                                     ~ 1|species,
                                     ~ 1|species_phylo),
@@ -138,7 +174,7 @@ summary(gift_model)
 
 
 #### SELECTION BIAS MODEL (sig)
-bias_model <- rma.mv(yi, vi, data = data_long, 
+bias_model <- rma.mv(yi, VCV_ESVar, data = data_long, 
                      random = list( ~ 1|study/experiment,
                                     ~ 1|species,
                                   ~ 1|species_phylo),
