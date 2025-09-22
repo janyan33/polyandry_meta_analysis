@@ -102,7 +102,6 @@ load("data/long_tree.Rdata")
 load("data/phylo_cor_long.Rdata")
 
 # Creating a duplicate species variable for the phylogenetic analysis
-# I don't entirely understand why this is necessary
 data_long$species_phylo <- data_long$species
 
 overall_model <- rma.mv(yi, VCV_ESVar, data = data_long, 
@@ -119,7 +118,7 @@ forest(overall_model)
 i2_ml(overall_model)
 
 #### TREATMENT MODEL (sig)
-treatment_model <- rma.mv(yi, vi, data = data_long, 
+treatment_model <- rma.mv(yi, VCV_ESVar, data = data_long, 
                           random = list( ~ 1|study/experiment,
                                          ~ 1|species,
                                          ~ 1|species_phylo),
@@ -136,7 +135,7 @@ summary(treatment_model)
              scale_fill_manual(values = c("#004e89","#2A8EDB","#ABDBFF","#E9F5FF")) +
              scale_color_manual(values = c("grey4", "grey4", "grey4", "grey4")))
 
-#### HARASSMENT MODEL (no sig)
+#### HARASSMENT MODEL (not sig)
 harass_model <- rma.mv(yi, VCV_ESVar, data = data_long, 
                        random = list( ~ 1|study/experiment,
                                       ~ 1|species,
@@ -154,7 +153,7 @@ summary(harass_model)
              scale_fill_manual(values = c("grey100", "grey25")) +
              scale_color_manual(values = c("grey4", "grey4")))
 
-#### NUPTIAL GIFT MODEL (sig)
+#### NUPTIAL GIFT MODEL (marg sig)
 gift_model <- rma.mv(yi, VCV_ESVar, data = data_long, 
                      random = list( ~ 1|study/experiment,
                                     ~ 1|species,
@@ -190,6 +189,70 @@ summary(bias_model)
              alpha = 0.35, g = TRUE) + theme(legend.position = "top") + 
              scale_fill_manual(values = c("grey100", "grey25")) +
              scale_color_manual(values = c("grey4", "grey4")))
+
+################################ PUBLICATION BIAS #########################################
+### Funnel plot visual inspection
+funnel(overall_model, yaxis="sei", xlab="Effect size (log odds ratio)", 
+       back="white", col=rgb(0,153,76, max=255, alpha=125), digits = 1) # nicer funnel plot
+
+data_long$precision <- sqrt(1/data_long$vi)
+
+# # meta-regressions testing for publication bias
+egger_model_long <- rma.mv(yi, VCV_ESVar, data = data_long, 
+                             random = list( ~ 1|study/experiment,
+                                            ~ 1|species,
+                                            ~ 1|species_phylo),
+                             R = list(species_phylo = phylo_cor_long),
+                             method = "REML",
+                             mods = ~ precision)
+summary(egger_model_long)
+
+
+#### Small study bias
+# Compute effective sample size
+data_long$inv_ESS <- (data_long$exp_N + data_long$con_N) / (data_long$exp_N *
+                                                                    data_long$con_N)
+data_long$sqrt_inv_ESS <- sqrt(data_long$inv_ESS)
+
+# Small-study effects (SME) model
+small_study_long_model <- rma.mv(yi, vi, data = data_long,
+                                   random = list( ~ 1|study/experiment,
+                                                  ~ 1|species,
+                                                  ~ 1|species_phylo),
+                                   R = list(species_phylo = phylo_cor_long),
+                                   mods = ~ sqrt_inv_ESS*treatment)
+
+summary(small_study_long_model)
+
+# Plot for small-study effects model
+orchaRd::bubble_plot(small_study_long_model, 
+                     mod = "sqrt_inv_ESS", group = "study",
+                     xlab = "sqrt_inv_ESS", 
+                     legend.pos = "bottom.right", 
+                     by = "treatment")
+
+
+##### Time-lag bias or decline effects
+# Extract year from source and center it
+data_long$year <- as.integer(unlist(str_extract_all(data_long$source, "\\d+")))
+data_long$year.c <- data_long$year - mean(data_long$year)
+
+# Decline effects (DE) model
+time_long_model <- rma.mv(yi, vi, data = data_long,
+                            random = list( ~ 1|study/experiment,
+                                           ~ 1|species,
+                                           ~ 1|species_phylo),
+                            R = list(species_phylo = phylo_cor_long),
+                            mods = ~ 1 + year.c*treatment) # significant decline effects
+
+summary(time_long_model)
+
+orchaRd::bubble_plot(time_long_model, mod = "year.c", 
+                     group = "study",
+                     xlab = "Year.c",
+                     legend.pos = "bottom.left", 
+                     by = "treatment")
+
 
 ## TAXONOMIC GROUP MODEL
 aggregate(data_long$order, by = list(data_long$order), FUN = length) 
