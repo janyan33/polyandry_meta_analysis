@@ -2,6 +2,7 @@ library(tidyverse)
 library(ggplot2); theme_set(theme_classic())
 library(DHARMa)
 library(metafor)
+library(clubSandwich)
 
 # For installing the orchaRd package
 install.packages("pacman")
@@ -215,6 +216,67 @@ summary(bias_model)
              scale_color_manual(values = c("grey4", "grey4")) + ylim(-1.65, 1.65))
 
 ggsave(bias_fig, filename = "fig_fecund_bias.png", width = 6, height = 4)
+
+################################ PUBLICATION BIAS #########################################
+### Funnel plot visual inspection
+funnel(overall_model, yaxis="sei", xlab="Effect size (log odds ratio)", 
+       back="white", col=rgb(0,153,76, max=255, alpha=125), digits = 1)
+
+data_fecund$precision <- sqrt(1/data_fecund$vi)
+
+# # meta-regressions testing for publication bias
+egger_model_fecund <- rma.mv(yi, VCV_ESVar, data = data_fecund, 
+                                  random = list( ~ 1|study/experiment,
+                                                 ~ 1|species,
+                                                 ~ 1|species_phylo),
+                                                   R = list(species_phylo = phylo_cor),
+                                                   method = "REML",
+                                                   mods = ~ precision)
+summary(egger_model_fecund)
+
+#### Small study bias
+# Compute effective sample size
+data_fecund$inv_ESS <- (data_fecund$exp_N + data_fecund$con_N) / (data_fecund$exp_N *
+                                                                    data_fecund$con_N)
+data_fecund$sqrt_inv_ESS <- sqrt(data_fecund$inv_ESS)
+
+# Small-study effects (SME) model
+small_study_fecund_model <- rma.mv(yi, vi, data = data_fecund,
+                            random = list( ~ 1|study/experiment,
+                                           ~ 1|species,
+                                           ~ 1|species_phylo),
+                           R = list(species_phylo = phylo_cor),
+                           mods = ~ sqrt_inv_ESS*treatment)
+
+summary(small_study_fecund_model)
+
+# Plot for small-study effects model
+orchaRd::bubble_plot(small_study_fecund_model, 
+                     mod = "sqrt_inv_ESS", group = "study",
+                     xlab = "squareroot inverse effective sample size", 
+                     legend.pos = "bottom.right", 
+                     by = "treatment")
+
+##### Time-lag bias or decline effects
+# Extract year from source and center it
+data_fecund$year <- as.integer(unlist(str_extract_all(data_fecund$source, "\\d+")))
+data_fecund$year.c <- data_fecund$year - mean(data_fecund$year)
+
+# Decline effects (DE) model
+time_fecund_model <- rma.mv(yi, vi, data = data_fecund,
+                            random = list( ~ 1|study/experiment,
+                                           ~ 1|species,
+                                           ~ 1|species_phylo),
+                            R = list(species_phylo = phylo_cor),
+                            mods = ~ 1 + year.c*treatment) # significant decline effects
+
+summary(time_fecund_model)
+
+orchaRd::bubble_plot(time_fecund_model, mod = "year.c", 
+                                        group = "study",
+                                        xlab = "Year (mean centered)",
+                                        legend.pos = "bottom.left", 
+                                        by = "treatment")
 
 ################################################# ORDER MODEL #####################################################
 # Filter for only categories with N > 5
