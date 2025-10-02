@@ -192,7 +192,7 @@ summary(bias_model)
 
 ################################ PUBLICATION BIAS #########################################
 ### Funnel plot visual inspection
-funnel(overall_model, yaxis="sei", xlab="Effect size (log odds ratio)", 
+funnel(overall_model, yaxis="seinv", xlab="Effect size (log odds ratio)", 
        back="white", col=rgb(0,153,76, max=255, alpha=125), digits = 1) # nicer funnel plot
 
 data_long$precision <- sqrt(1/data_long$vi)
@@ -252,35 +252,4 @@ orchaRd::bubble_plot(time_long_model, mod = "year.c",
                      xlab = "Year.c",
                      legend.pos = "bottom.left", 
                      by = "treatment")
-
-
-## TAXONOMIC GROUP MODEL
-aggregate(data_long$order, by = list(data_long$order), FUN = length) 
-
-# Filter for only categories with N > 5
-data_long_order <- data_long %>% 
-                   filter(order != "Blattodea" &
-                          order != "Megaloptera" &
-                          order != "Thysanoptera")
-
-
-order_model <- rma.mv(yi, vi, data = data_long_order, 
-                      random = list( ~ 1|study/experiment,
-                                     ~ 1|species,
-                                     ~ 1|species_phylo),
-                      R = list(species_phylo = phylo_cor_long),,
-                      method = "REML",
-                      mods = ~ 1 + order) 
-
-summary(order_model)
-
-orchard_plot(order_model, xlab = "Effect size (log response ratio)", 
-             group = "study",
-             mod = "order", twig.size = 0.5, branch.size = 2, trunk.size = 0.75, 
-             angle = 45, flip = TRUE, 
-             alpha = 0.35, g = TRUE) + theme(legend.position = "top")
-
-
-
-
 

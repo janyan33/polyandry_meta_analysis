@@ -3,12 +3,6 @@ library(ggplot2); theme_set(theme_classic())
 library(DHARMa)
 library(metafor)
 library(clubSandwich)
-
-# For installing the orchaRd package
-install.packages("pacman")
-pacman::p_load(devtools, tidyverse, metafor, patchwork, R.rsp, emmeans)
-
-devtools::install_github("daniel1noble/orchaRd", force = TRUE)
 library(orchaRd)
 
 My_Theme = theme(
@@ -131,6 +125,7 @@ treatment_model <- rma.mv(yi, VCV_ESVar, data = data_fecund,
                           mods = ~ 0 + treatment)
 
 summary(treatment_model)
+r2_ml(treatment_model) # Get marginal r2
 
 (treatment_fig <- orchard_plot(treatment_model, xlab = "Effect size (log response ratio)", 
              group = "source",  
@@ -150,6 +145,7 @@ harass_model <- rma.mv(yi, VCV_ESVar, data = data_fecund,
                        mods = ~ 1 + harass.)
 
 summary(harass_model)
+r2_ml(harass_model) # Get marginal r2
 
 (harass_fig <- orchard_plot(harass_model, xlab = "Effect size (log response ratio)", 
              group = "study",  
@@ -169,6 +165,7 @@ lifetime_model <- rma.mv(yi, VCV_ESVar, data = data_fecund,
                          mods = ~ 1 + lifetime.) # change the intercept from 1 to 0 to get model results relative to zero
 
 summary(lifetime_model)
+r2_ml(lifetime_model) # Get marginal r2
 
 (lifetime_plot <- orchard_plot(lifetime_model, xlab = "Effect size (log response ratio)", 
              group = "study",  
@@ -188,6 +185,7 @@ gift_model <- rma.mv(yi, VCV_ESVar, data = data_fecund,
                      mods = ~ 1 + nup_gift.) # change the intercept from 1 to 0 to get model results relative to zero
 
 summary(gift_model)
+r2_ml(gift_model) # Get marginal r2
 
 (gift_fig <- orchard_plot(gift_model, xlab = "Effect size (log response ratio)", 
              group = "study",  
@@ -207,6 +205,7 @@ bias_model <- rma.mv(yi, VCV_ESVar, data = data_fecund,
                      mods = ~ 1 + bias.) # change the intercept from 1 to 0 to get model results relative to zero
 
 summary(bias_model)
+r2_ml(bias_model) # Get marginal r2
 
 (bias_fig <- orchard_plot(bias_model, xlab = "Effect size (log response ratio)", 
              group = "study",  
@@ -217,14 +216,14 @@ summary(bias_model)
 
 ggsave(bias_fig, filename = "fig_fecund_bias.png", width = 6, height = 4)
 
-################################ PUBLICATION BIAS #########################################
+################################ PUBLICATION BIAS ###############################################
 ### Funnel plot visual inspection
-funnel(overall_model, yaxis="sei", xlab="Effect size (log odds ratio)", 
+funnel(overall_model, yaxis="seinv", xlab="Effect size (log odds ratio)", 
        back="white", col=rgb(0,153,76, max=255, alpha=125), digits = 1)
 
+### Meta-regressions testing for publication bias
 data_fecund$precision <- sqrt(1/data_fecund$vi)
 
-# # meta-regressions testing for publication bias
 egger_model_fecund <- rma.mv(yi, VCV_ESVar, data = data_fecund, 
                                   random = list( ~ 1|study/experiment,
                                                  ~ 1|species,
@@ -232,6 +231,7 @@ egger_model_fecund <- rma.mv(yi, VCV_ESVar, data = data_fecund,
                                                    R = list(species_phylo = phylo_cor),
                                                    method = "REML",
                                                    mods = ~ precision)
+
 summary(egger_model_fecund)
 
 #### Small study bias
@@ -277,35 +277,3 @@ orchaRd::bubble_plot(time_fecund_model, mod = "year.c",
                                         xlab = "Year (mean centered)",
                                         legend.pos = "bottom.left", 
                                         by = "treatment")
-
-################################################# ORDER MODEL #####################################################
-# Filter for only categories with N > 5
-aggregate(data_fecund$order, by = list(data_fecund$order), FUN = length) 
-
-data_fecund_order <- data_fecund %>% 
-                     filter(order != "Blattodea" & # N = 3
-                     order != "Megaloptera" & # N = 2
-                     order != "Thysanoptera" & # N = 1
-                     order != "Decapoda" & # N = 1
-                     order != "Mantodea" & # N = 2
-                     order != "Neuroptera" & # N = 3
-                     order != "Siphonaptera") # N = 1
-
-order_fecund_model <- rma.mv(yi, vi, data = data_fecund_order, 
-                             random = list( ~ 1|study/experiment,
-                                            ~ 1|species,
-                                            ~ 1|species_phylo),
-                             R = list(species_phylo = phylo_cor_long),
-                             method = "REML",
-                             mods = ~ 1 + order) # change the intercept from 1 to 0 to get model results relative to zero
-
-summary(order_fecund_model)
-
-order_fig <- orchard_plot(order_fecund_model, xlab = "Effect size (log response ratio)", 
-             group = "study",
-             mod = "order", twig.size = NA, branch.size = 2, trunk.size = 0.75, 
-             angle = 45, flip = TRUE, cb = TRUE, 
-             alpha = 0.35, g = TRUE) + theme(legend.position = "top") + ylim(-1.65, 1.65)
-
-ggsave(order_fig, filename = "fig_fecund_order.png", width = 6, height = 4)
-
