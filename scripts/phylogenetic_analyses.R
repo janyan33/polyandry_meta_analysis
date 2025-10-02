@@ -15,7 +15,7 @@ library(ggcorrplot)
 load("data/fecund_tree.Rdata")
 
 # Plotting fecundity tree
-plot(tree, cex = 0.5, label.offset = 0.25, no.margin = TRUE)
+plot(tree, cex = 0.4, label.offset = 0.25, no.margin = TRUE)
 
 ### Checking that tree is complete
 data_fecund <- read.csv("data/fecund_data.csv") # load in dataset to compare
@@ -149,7 +149,7 @@ long_tree <- tol_induced_subtree(ott_ids =
 
 long_tree$tip.label <- gsub("_", " ", long_tree$tip.label)
 
-plot(long_tree, cex = 0.5, label.offset = 0.25, no.margin = TRUE)
+plot(long_tree, cex = 0.4, label.offset = 0.25, no.margin = TRUE)
 
 save(long_tree, file = "data/long_tree.Rdata")
 

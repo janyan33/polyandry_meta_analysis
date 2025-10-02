@@ -11,6 +11,8 @@ My_Theme = theme(
   axis.title.y = element_text(size = 16), 
   axis.text.y = element_text(size = 16))
 
+par(mar = c(5.1, 4.1, 4.1, 2.1)) 
+
 ########################### CLEANING TREATMENT DATA BY COMBINING INTO FOUR LEVELS ##############################
 data_fecund <- read.csv("data/fecund_data.csv") |>
                filter(nzchar(source))
@@ -236,6 +238,7 @@ summary(egger_model_fecund)
 
 #### Small study bias
 # Compute effective sample size
+data_fecund$treatment <- factor(data_fecund$treatment, levels = c("once_twice","once_few", "once_many", "few_many"))
 data_fecund$inv_ESS <- (data_fecund$exp_N + data_fecund$con_N) / (data_fecund$exp_N *
                                                                     data_fecund$con_N)
 data_fecund$sqrt_inv_ESS <- sqrt(data_fecund$inv_ESS)
@@ -255,7 +258,8 @@ orchaRd::bubble_plot(small_study_fecund_model,
                      mod = "sqrt_inv_ESS", group = "study",
                      xlab = "squareroot inverse effective sample size", 
                      legend.pos = "bottom.right", 
-                     by = "treatment")
+                     by = "treatment") + geom_blank(data = data_fecund, aes(color = treatment)) + 
+                     scale_fill_manual(values = c("#E9F5FF","#ABDBFF","#2A8EDB","#004e89"))
 
 ##### Time-lag bias or decline effects
 # Extract year from source and center it
@@ -274,6 +278,7 @@ summary(time_fecund_model)
 
 orchaRd::bubble_plot(time_fecund_model, mod = "year.c", 
                                         group = "study",
-                                        xlab = "Year (mean centered)",
+                                        xlab = "Mean-centered year",
                                         legend.pos = "bottom.left", 
-                                        by = "treatment")
+                                        by = "treatment") + geom_blank(data = data_fecund, aes(color = treatment)) + 
+                                        scale_fill_manual(values = c("#E9F5FF","#ABDBFF","#2A8EDB","#004e89"))

@@ -210,6 +210,8 @@ summary(egger_model_long)
 
 #### Small study bias
 # Compute effective sample size
+data_long$treatment <- factor(data_long$treatment, levels = c("once_twice","once_few", "once_many", "few_many"))
+
 data_long$inv_ESS <- (data_long$exp_N + data_long$con_N) / (data_long$exp_N *
                                                                     data_long$con_N)
 data_long$sqrt_inv_ESS <- sqrt(data_long$inv_ESS)
@@ -227,10 +229,10 @@ summary(small_study_long_model)
 # Plot for small-study effects model
 orchaRd::bubble_plot(small_study_long_model, 
                      mod = "sqrt_inv_ESS", group = "study",
-                     xlab = "sqrt_inv_ESS", 
+                     xlab = "square root inverse effective sample size", 
                      legend.pos = "bottom.right", 
-                     by = "treatment")
-
+                     by = "treatment") + geom_blank(data = data_long, aes(color = treatment)) + 
+                     scale_fill_manual(values = c("#E9F5FF","#ABDBFF","#2A8EDB","#004e89"))
 
 ##### Time-lag bias or decline effects
 # Extract year from source and center it
@@ -249,7 +251,8 @@ summary(time_long_model)
 
 orchaRd::bubble_plot(time_long_model, mod = "year.c", 
                      group = "study",
-                     xlab = "Year.c",
+                     xlab = "Mean-centered year",
                      legend.pos = "bottom.left", 
-                     by = "treatment")
+                     by = "treatment") + geom_blank(data = data_long, aes(color = treatment)) + 
+                     scale_fill_manual(values = c("#E9F5FF","#ABDBFF","#2A8EDB","#004e89"))
 
