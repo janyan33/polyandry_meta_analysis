@@ -253,6 +253,8 @@ small_study_fecund_model <- rma.mv(yi, vi, data = data_fecund,
 
 summary(small_study_fecund_model)
 
+anova(small_study_fecund_model, btt = 6:8) # testing interaction (not significant)
+
 # Plot for small-study effects model
 orchaRd::bubble_plot(small_study_fecund_model, 
                      mod = "sqrt_inv_ESS", group = "study",
@@ -272,9 +274,10 @@ time_fecund_model <- rma.mv(yi, vi, data = data_fecund,
                                            ~ 1|species,
                                            ~ 1|species_phylo),
                             R = list(species_phylo = phylo_cor),
-                            mods = ~ 1 + year.c*treatment) # significant decline effects
+                            mods = ~  year.c*treatment) # significant decline effects
 
 summary(time_fecund_model)
+anova(time_fecund_model, btt = 6:8)
 
 orchaRd::bubble_plot(time_fecund_model, mod = "year.c", 
                                         group = "study",

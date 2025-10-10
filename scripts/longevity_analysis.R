@@ -226,6 +226,8 @@ small_study_long_model <- rma.mv(yi, vi, data = data_long,
 
 summary(small_study_long_model)
 
+anova(small_study_long_model, btt = 6:9)
+
 # Plot for small-study effects model
 orchaRd::bubble_plot(small_study_long_model, 
                      mod = "sqrt_inv_ESS", group = "study",
@@ -248,6 +250,7 @@ time_long_model <- rma.mv(yi, vi, data = data_long,
                             mods = ~ 1 + year.c*treatment) # significant decline effects
 
 summary(time_long_model)
+anova(time_long_model, btt = 6:8)
 
 orchaRd::bubble_plot(time_long_model, mod = "year.c", 
                      group = "study",
