@@ -132,7 +132,7 @@ r2_ml(treatment_model) # Get marginal r2
 (treatment_fig <- orchard_plot(treatment_model, xlab = "Effect size (log response ratio)", 
              group = "source",  
              mod = "treatment", twig.size = 0.5, branch.size = 2, trunk.size = 0.6, angle = 45, flip = TRUE, 
-             alpha = 0.4, g = T) + theme(legend.position = "top") + ylim(-2, 2) +
+             alpha = 0.4, g = T) + theme(legend.position = "top") +  ylim(-1.65, 1.65) +
              scale_fill_manual(values = c("#004e89","#2A8EDB","#ABDBFF", "#E9F5FF")) +
              scale_color_manual(values = c("grey20", "grey20", "grey20", "grey20")))
 
@@ -285,3 +285,32 @@ orchaRd::bubble_plot(time_fecund_model, mod = "year.c",
                                         legend.pos = "bottom.left", 
                                         by = "treatment") + geom_blank(data = data_fecund, aes(color = treatment)) + 
                                         scale_fill_manual(values = c("#E9F5FF","#ABDBFF","#2A8EDB","#004e89"))
+
+
+####### Extra fecundity figure
+fecund_treatment_results <- coef(summary(treatment_model))
+fecund_treatment_results <- tibble::rownames_to_column(fecund_treatment_results, "treatment")
+fecund_treatment_results$treatment <- factor(fecund_treatment_results$treatment, 
+                                             levels = c("treatmentonce_twice", "treatmentonce_few", 
+                                                        "treatmentonce_many", "treatmentfew_many"))
+fecund_treatment_results <- fecund_treatment_results %>% 
+                            filter(treatment != "treatmentfew_many")
+
+ggplot(data = fecund_treatment_results, aes(x = treatment, y = estimate)) + 
+  geom_hline(yintercept = 0, linetype = 2, color = "grey") + My_Theme + 
+  xlab("Effect size (Log response ratio)") + ylab("") + theme(legend.position = "none") + 
+  geom_vline(xintercept = 0, linetype = 2) + ylim(-0.1, 0.3) + 
+  geom_pointrange(data = fecund_treatment_results, aes(y = estimate, ymin = ci.lb, ymax = ci.ub), color = "grey20", 
+                  lwd = 1, fatten = 5, shape = 16)
+
+
+
+
+
+
+
+
+
+
+
+
