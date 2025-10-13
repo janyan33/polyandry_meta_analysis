@@ -132,7 +132,7 @@ r2_ml(treatment_model) # Get marginal r2
 (treatment_fig <- orchard_plot(treatment_model, xlab = "Effect size (log response ratio)", 
              group = "source",  
              mod = "treatment", twig.size = 0.5, branch.size = 2, trunk.size = 0.6, angle = 45, flip = TRUE, 
-             alpha = 0.4, g = T) + theme(legend.position = "top") + ylim(-1.5, 1.65) +
+             alpha = 0.4, g = T) + theme(legend.position = "top") + ylim(-2, 2) +
              scale_fill_manual(values = c("#004e89","#2A8EDB","#ABDBFF", "#E9F5FF")) +
              scale_color_manual(values = c("grey20", "grey20", "grey20", "grey20")))
 

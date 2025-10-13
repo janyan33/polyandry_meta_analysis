@@ -34,4 +34,4 @@ ggplot(data = global_results, aes(x = estimate, y = fitness_metric)) + My_Theme 
   xlab("Effect size (Log response ratio)") + ylab("") + theme(legend.position = "none") + 
   geom_vline(xintercept = 0, linetype = 2) +
   geom_pointrange(data = global_results, aes(x = estimate, xmin = ci.lb, xmax = ci.ub), color = "grey20", 
-                  lwd = 2, fatten = 5, shape = 23) + xlim(-0.2, 0.2)
+                  lwd = 2, fatten = 5, shape = 23)

@@ -135,6 +135,8 @@ summary(treatment_model)
              scale_fill_manual(values = c("#004e89","#2A8EDB","#ABDBFF","#E9F5FF")) +
              scale_color_manual(values = c("grey4", "grey4", "grey4", "grey4")))
 
+ggsave(treatment_fig, filename = "fig_long_treatment.png", width = 6, height = 4)
+
 #### HARASSMENT MODEL (not sig)
 harass_model <- rma.mv(yi, VCV_ESVar, data = data_long, 
                        random = list( ~ 1|study/experiment,
@@ -152,6 +154,8 @@ summary(harass_model)
              alpha = 0.35, g = TRUE) + theme(legend.position = "top") + 
              scale_fill_manual(values = c("grey100", "grey25")) +
              scale_color_manual(values = c("grey4", "grey4")))
+
+ggsave(harass_fig, filename = "fig_long_harass.png", width = 6, height = 4)
 
 #### NUPTIAL GIFT MODEL (marg sig)
 gift_model <- rma.mv(yi, VCV_ESVar, data = data_long, 
@@ -171,6 +175,8 @@ summary(gift_model)
   scale_fill_manual(values = c("grey100", "grey25")) +
   scale_color_manual(values = c("grey4", "grey4")))
 
+ggsave(gift_fig, filename = "fig_long_gift.png", width = 6, height = 4)
+
 
 #### SELECTION BIAS MODEL (sig)
 bias_model <- rma.mv(yi, VCV_ESVar, data = data_long, 
@@ -189,6 +195,8 @@ summary(bias_model)
              alpha = 0.35, g = TRUE) + theme(legend.position = "top") + 
              scale_fill_manual(values = c("grey100", "grey25")) +
              scale_color_manual(values = c("grey4", "grey4")))
+
+ggsave(bias_fig, filename = "fig_long_bias.png", width = 6, height = 4)
 
 ################################ PUBLICATION BIAS #########################################
 ### Funnel plot visual inspection
