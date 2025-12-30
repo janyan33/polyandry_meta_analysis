@@ -218,6 +218,72 @@ r2_ml(bias_model) # Get marginal r2
 
 ggsave(bias_fig, filename = "fig_fecund_bias.png", width = 6, height = 4)
 
+############################################## ORDER MODEL ##############################################
+# Creating a new dataset excluding data points from orders with 5 or less data points
+table(data_fecund$order)
+data_fecund_order <- data_fecund %>% 
+                     filter(order != "Thysanoptera") %>% # N = 1
+                     filter(order != "Siphonaptera") %>%  # N = 1
+                     filter(order != "Mantodea") %>% # N = 2
+                     filter(order != "Megaloptera") %>% # N = 2
+                     filter(order != "Decapoda") %>% # N = 1
+                     filter(order != "Blattodea") # N = 3
+
+table(data_fecund_order$order)
+
+# Variance-covariance matrix for order model specifically
+VCV_ESVar_order <- matrix(0, nrow = nrow(data_fecund_order), 
+                                         ncol = nrow(data_fecund_order))
+                     
+# Names rows and columns for each obsID
+rownames(VCV_ESVar_order) <- data_fecund_order[, "X"]
+colnames(VCV_ESVar_order) <- data_fecund_order[, "X"]
+                     
+# Finds effect sizes that come from the same study
+shared_coord_order <- which(data_fecund_order[, "study"] %in% 
+                      data_fecund_order[duplicated(data_fecund_order[, "study"]), 
+                                                     "study"] == TRUE)
+                     
+combinations_order <- do.call("rbind", tapply(shared_coord_order, 
+                                 data_fecund_order[shared_coord_order, "study"], 
+                                 function(x) t(utils::combn(x, 2))))
+                     
+# Calculates the covariance between effect sizes and enters them in each combination of coordinates
+for (i in 1 : dim(combinations_order)[1]) {
+              p1 <- combinations_order[i, 1]
+              p2 <- combinations_order[i, 2]
+              p1_p2_cov <- 0.5 * sqrt(data_fecund_order[p1, "vi"]) * 
+                           sqrt(data_fecund_order[p2, "vi"])
+                           VCV_ESVar_order[p1, p2] <- p1_p2_cov
+                           VCV_ESVar_order[p2, p1] <- p1_p2_cov
+                     } 
+                     
+                     diag(VCV_ESVar_order) <- data_fecund_order[, "vi"]
+                     
+#### ORDER MODEL ####                    
+data_fecund_order$order <- factor(data_fecund_order$order, 
+                           levels = c("Mesostigmata", 
+                                      "Hymenoptera",
+                                      "Orthoptera", 
+                                      "Hemiptera", 
+                                      "Arachnida",
+                                      "Lepidoptera",
+                                      "Diptera", 
+                                      "Coleoptera")) # reordered based on which orders have the most data points
+                     
+order_model <- rma.mv(yi, VCV_ESVar_order, data = data_fecund_order, 
+                     random = list( ~ 1|study/experiment,
+                                    ~ 1|species),
+                     mods = ~ 1 + order) # change the intercept from 1 to 0 to get model results relative to zero
+
+summary(order_model)
+r2_ml(order_model) # Get marginal r2
+
+(order_fig <- orchard_plot(order_model, xlab = "Effect size (log response ratio)", 
+                          group = "study",  
+                          mod = "order", twig.size = 0.5, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
+                          alpha = 0.35, g = TRUE) + theme(legend.position = "top") + ylim(-1.65, 1.65))
+
 ################################ PUBLICATION BIAS ###############################################
 ### Funnel plot visual inspection
 funnel(overall_model, yaxis="seinv", xlab="Effect size (log odds ratio)", 
