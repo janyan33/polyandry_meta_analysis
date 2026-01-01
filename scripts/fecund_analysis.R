@@ -262,14 +262,14 @@ for (i in 1 : dim(combinations_order)[1]) {
                      
 #### ORDER MODEL ####                    
 data_fecund_order$order <- factor(data_fecund_order$order, 
-                           levels = c("Mesostigmata", 
+                           levels = c("Orthoptera",
+                                      "Mesostigmata",
+                                      "Lepidoptera", 
                                       "Hymenoptera",
-                                      "Orthoptera", 
-                                      "Hemiptera", 
-                                      "Arachnida",
-                                      "Lepidoptera",
-                                      "Diptera", 
-                                      "Coleoptera")) # reordered based on which orders have the most data points
+                                      "Hemiptera",
+                                      "Diptera",
+                                      "Coleoptera",
+                                      "Arachnida")) # reordered based on which orders have the most data points
                      
 order_model <- rma.mv(yi, VCV_ESVar_order, data = data_fecund_order, 
                      random = list( ~ 1|study/experiment,
@@ -281,7 +281,7 @@ r2_ml(order_model) # Get marginal r2
 
 (order_fig <- orchard_plot(order_model, xlab = "Effect size (log response ratio)", 
                           group = "study",  
-                          mod = "order", twig.size = 0.5, branch.size = 2, trunk.size = 0.75, angle = 45, flip = TRUE, 
+                          mod = "order", twig.size = 0.5, branch.size = 1.5, trunk.size = 2, angle = 45, flip = TRUE, 
                           alpha = 0.35, g = TRUE) + theme(legend.position = "top") + ylim(-1.65, 1.65))
 
 ################################ PUBLICATION BIAS ###############################################
