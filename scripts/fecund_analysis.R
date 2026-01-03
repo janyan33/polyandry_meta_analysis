@@ -284,6 +284,8 @@ r2_ml(order_model) # Get marginal r2
                           mod = "order", twig.size = 0.5, branch.size = 1.5, trunk.size = 2, angle = 45, flip = TRUE, 
                           alpha = 0.35, g = TRUE) + theme(legend.position = "top") + ylim(-1.65, 1.65))
 
+ggsave(order_fig, filename = "fig_fecund_order.png", width = 6, height = 4)
+
 ################################ PUBLICATION BIAS ###############################################
 ### Funnel plot visual inspection
 funnel(overall_model, yaxis="seinv", xlab="Effect size (log odds ratio)", 
