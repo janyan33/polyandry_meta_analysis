@@ -51,9 +51,38 @@ data_fecund <- escalc(measure = "ROM", data = data_fecund,
                       sd2i = ifelse(is.na(con_fert_SD), con_fecund_SD, con_fert_SD), 
                       n1i = exp_N, n2i = adjusted_con_N, 
                       slab = source, 
-                      vtype = "AVHO")
+                      vtype = "AVHO") 
+
+# Sensitivity analysis:
+# also used vtype = "AV" to show that results are robust to alternative variance estimators
 
 length(data_fecund$yi) # 325 effect sizes
+
+# Checking that CV is equal across treatment groups and across studies
+# Calculating CV for experimental vs. control groups
+data_fecund$cv_exp  <- (ifelse(is.na(data_fecund$exp_fert), 
+                              data_fecund$exp_fecund_SD, 
+                              data_fecund$exp_fert_SD)  / ifelse(is.na(data_fecund$exp_fert), 
+                                                                 data_fecund$exp_fecund, 
+                                                                 data_fecund$exp_fert))
+
+data_fecund$cv_con   <- ifelse(is.na(data_fecund$con_fert_SD), 
+                               data_fecund$con_fecund_SD, 
+                               data_fecund$con_fert_SD)   / ifelse(is.na(data_fecund$con_fert), 
+                                                                   data_fecund$con_fecund, 
+                                                                   data_fecund$con_fert)
+
+summary(data_fecund$cv_exp/data_fecund$cv_con) # Ratios cluster around 1 which is good
+
+# Visualizing CV homogeneity
+plot(data_fecund$cv_con, data_fecund$cv_exp,
+     xlab = "CV Control",
+     ylab = "CV Treatment")
+abline(0,1) # similar spread above and below line; most points clustered around 1:1 line
+
+boxplot(data_fecund$cv_exp, data_fecund$cv_con,
+        names = c("Treatment", "Control"),
+        ylab = "Coefficient of Variation") # looks similar across treatment groups
 
 # CREATING A VARIANCE-COVARIANCE MATRIX 
 # Code taken from Mentesana et al. 2025: 10.5281/zenodo.14930059

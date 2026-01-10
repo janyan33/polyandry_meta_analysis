@@ -13,7 +13,7 @@ My_Theme = theme(
 #install.packages("pacman")
 #pacman::p_load(devtools, tidyverse, metafor, patchwork, R.rsp, emmeans)
 
-devtools::install_github("daniel1noble/orchaRd", force = TRUE)
+#devtools::install_github("daniel1noble/orchaRd", force = TRUE)
 library(orchaRd)
 
 # SCRIPT FOR ANALYZING EFFECT OF POLYANDRY ON LONGEVITY
@@ -54,6 +54,27 @@ data_long <- escalc(measure = "ROM", data = data_long,
                       slab = source, vtype = "AVHO")
 
 length(data_long$yi) # 242 effect sizes
+
+# Sensitivity analysis:
+# also used vtype = "AV" to show that results are robust to alternative variance estimators
+
+# Checking that CV is equal across treatment groups and across studies
+# Calculating CV for experimental vs. control groups
+data_long$cv_exp  <- data_long$exp_long_SD / data_long$exp_long
+
+data_long$cv_con   <- data_long$con_long_SD / data_long$con_long
+
+summary(data_long$cv_exp/data_long$cv_con) # Ratios cluster around 1 which is good
+
+# Visualizing CV homogeneity
+plot(data_long$cv_con, data_long$cv_exp,
+     xlab = "CV Control",
+     ylab = "CV Treatment")
+abline(0,1) # similar spread above and below line; most points clustered around 1:1 line
+
+boxplot(data_long$cv_exp, data_long$cv_con,
+        names = c("Treatment", "Control"),
+        ylab = "Coefficient of Variation") # looks similar across treatment groups
 
 # CREATING A VARIANCE-COVARIANCE MATRIX 
 # Code taken from Mentesana et al. 2025: 10.5281/zenodo.14930059
