@@ -45,7 +45,6 @@ aggregate(data_long$treatment, by = list(data_long$treatment), FUN = length) # g
 data_long$treatment <- factor(data_long$treatment, levels = c("few_many", "once_many", "once_few", "once_twice"))
 
 ############################ CALCULATE EFFECT SIZES ##################################
-
 data_long <- escalc(measure = "ROM", data = data_long,
                       m1i = exp_long, 
                       m2i = con_long, 
@@ -116,6 +115,17 @@ forest(overall_model)
 
 # Calculating heterogeneity
 i2_ml(overall_model)
+
+############################### OVERALL MODEL WITH ALL MODERATORS ###############################################
+overall_model_all_mods <- rma.mv(yi, VCV_ESVar, data = data_long, 
+                                 random = list( ~ 1|study/experiment,
+                                                ~ 1|species,
+                                                ~ 1|species_phylo),
+                                 R = list(species_phylo = phylo_cor_long),
+                                 method = "REML",
+                                 mods = ~ 1 + treatment + harass. + nup_gift.)
+
+summary(overall_model_all_mods)
 
 #### TREATMENT MODEL (sig)
 treatment_model <- rma.mv(yi, VCV_ESVar, data = data_long, 
