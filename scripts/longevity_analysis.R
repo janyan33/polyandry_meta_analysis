@@ -137,17 +137,6 @@ forest(overall_model)
 # Calculating heterogeneity
 i2_ml(overall_model)
 
-############################### OVERALL MODEL WITH ALL MODERATORS ###############################################
-overall_model_all_mods <- rma.mv(yi, VCV_ESVar, data = data_long, 
-                                 random = list( ~ 1|study/experiment,
-                                                ~ 1|species,
-                                                ~ 1|species_phylo),
-                                 R = list(species_phylo = phylo_cor_long),
-                                 method = "REML",
-                                 mods = ~ 1 + treatment + harass. + nup_gift.)
-
-summary(overall_model_all_mods)
-
 #### TREATMENT MODEL (sig)
 treatment_model <- rma.mv(yi, VCV_ESVar, data = data_long, 
                           random = list( ~ 1|study/experiment,

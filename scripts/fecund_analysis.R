@@ -146,17 +146,6 @@ forest(overall_model) # checked the extreme values, not errors
 # Calculating heterogeneity
 i2_ml(overall_model)
 
-############################### OVERALL MODEL WITH ALL MODERATORS ###############################################
-overall_model_all_mods <- rma.mv(yi, VCV_ESVar, data = data_fecund, 
-                        random = list( ~ 1|study/experiment,
-                                       ~ 1|species,
-                                       ~ 1|species_phylo),
-                        R = list(species_phylo = phylo_cor),
-                        method = "REML",
-                        mods = ~ 1 + treatment + harass. + lifetime. + nup_gift.)
-
-summary(overall_model_all_mods)
-
 ######################################### TREATMENT MODERATOR MODEL #############################################
 treatment_model <- rma.mv(yi, VCV_ESVar, data = data_fecund, 
                           random = list( ~ 1|study/experiment,
@@ -177,6 +166,75 @@ r2_ml(treatment_model) # Get marginal r2
              scale_color_manual(values = c("grey20", "grey20", "grey20", "grey20")))
 
 ggsave(treatment_fig, filename = "fig_fecund_treatment.png", width = 6, height = 4)
+
+
+################## TREATMENT MODERATOR MODEL FOR SUBSET WITH ONLY LIFETIME REP SUCCESS DATA ######################
+lifetime_data <- data_fecund %>% 
+                 filter(lifetime. == "y")
+
+
+# Variance - covariance matrix for lifetime reproductive success model (sub-analysis)
+VCV_ESVar_lifetime <- matrix(0, nrow = nrow(lifetime_data), 
+                      ncol = nrow(lifetime_data))
+
+# Names rows and columns for each obsID
+rownames(VCV_ESVar_lifetime) <- lifetime_data[, "X"]
+colnames(VCV_ESVar_lifetime) <- lifetime_data[, "X"]
+
+# Finds effect sizes that come from the same study
+shared_coord <- which(lifetime_data[, "study"] %in% 
+                        lifetime_data[duplicated(lifetime_data[, "study"]), 
+                                    "study"] == TRUE)
+
+combinations <- do.call("rbind", tapply(shared_coord, 
+                                        lifetime_data[shared_coord, "study"], 
+                                        function(x) t(utils::combn(x, 2))))
+
+# Calculates the covariance between effect sizes and enters them in each 
+# combination of coordinates
+for (i in 1 : dim(combinations)[1]) {
+  p1 <- combinations[i, 1]
+  p2 <- combinations[i, 2]
+  p1_p2_cov <- 0.5 * sqrt(lifetime_data[p1, "vi"]) * 
+    sqrt(lifetime_data[p2, "vi"])
+  VCV_ESVar_lifetime[p1, p2] <- p1_p2_cov
+  VCV_ESVar_lifetime[p2, p1] <- p1_p2_cov
+} 
+
+diag(VCV_ESVar_lifetime) <- lifetime_data[, "vi"]
+
+### NEW PHYLO TREE WITH ONLY SPECIES IN LIFETIME DATA SUBSET ###
+library(ape)
+tree_sub <- drop.tip(tree,
+                     setdiff(tree$tip.label, species_lifetime_data))
+
+lifetime_phylo_branch <- compute.brlen(tree_sub, method = "Grafen", power = 1)
+
+is.ultrametric(lifetime_phylo_branch)
+
+lifetime_phylo_cor <- vcv(lifetime_phylo_branch, cor = T)
+
+### NEW MODEL WITH ONLY LIFETIME REPRODUCTIVE SUCCESS DATA ###
+lifetime_data$species_phylo <- lifetime_data$species
+
+treatment_model_lifetime <- rma.mv(yi, VCV_ESVar_lifetime, data = lifetime_data, 
+                                   random = list( ~ 1|study/experiment,
+                                                  ~ 1|species,
+                                                  ~ 1|species_phylo),
+                                   R = list(species_phylo = lifetime_phylo_cor),
+                                   method = "REML",
+                                   mods = ~ 1 + treatment)
+
+summary(treatment_model_lifetime)
+
+(treatment_lifetime_fig <- orchard_plot(treatment_model_lifetime, xlab = "Effect size (log response ratio)", 
+                               group = "source",  
+                               mod = "treatment", twig.size = 0.5, branch.size = 2, trunk.size = 0.6, angle = 45, flip = TRUE, 
+                               alpha = 0.4, g = T) + theme(legend.position = "top") +  ylim(-1.65, 1.65) +
+                               scale_fill_manual(values = c("#004e89","#2A8EDB","#ABDBFF", "#E9F5FF")) +
+                               scale_color_manual(values = c("grey20", "grey20", "grey20", "grey20")))
+
+ggsave(treatment_lifetime_fig, filename = "treatment_lifetime_fig.png", width = 6, height = 4)
 
 #################################### CONTINOUS HOUSING MODERATOR MODEL ###########################################
 harass_model <- rma.mv(yi, VCV_ESVar, data = data_fecund, 
