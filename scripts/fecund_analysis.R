@@ -172,7 +172,6 @@ ggsave(treatment_fig, filename = "fig_fecund_treatment.png", width = 6, height =
 lifetime_data <- data_fecund %>% 
                  filter(lifetime. == "y")
 
-
 # Variance - covariance matrix for lifetime reproductive success model (sub-analysis)
 VCV_ESVar_lifetime <- matrix(0, nrow = nrow(lifetime_data), 
                       ncol = nrow(lifetime_data))
@@ -206,7 +205,7 @@ diag(VCV_ESVar_lifetime) <- lifetime_data[, "vi"]
 ### NEW PHYLO TREE WITH ONLY SPECIES IN LIFETIME DATA SUBSET ###
 library(ape)
 tree_sub <- drop.tip(tree,
-                     setdiff(tree$tip.label, species_lifetime_data))
+                     setdiff(tree$tip.label, lifetime_data$species))
 
 lifetime_phylo_branch <- compute.brlen(tree_sub, method = "Grafen", power = 1)
 
@@ -223,7 +222,7 @@ treatment_model_lifetime <- rma.mv(yi, VCV_ESVar_lifetime, data = lifetime_data,
                                                   ~ 1|species_phylo),
                                    R = list(species_phylo = lifetime_phylo_cor),
                                    method = "REML",
-                                   mods = ~ 1 + treatment)
+                                   mods = ~ 0 + treatment)
 
 summary(treatment_model_lifetime)
 
@@ -468,15 +467,3 @@ ggplot(data = fecund_treatment_results, aes(x = treatment, y = estimate)) +
   geom_vline(xintercept = 0, linetype = 2) + ylim(-0.1, 0.3) + 
   geom_pointrange(data = fecund_treatment_results, aes(y = estimate, ymin = ci.lb, ymax = ci.ub), color = "grey20", 
                   lwd = 1, fatten = 5, shape = 16)
-
-
-
-
-
-
-
-
-
-
-
-
